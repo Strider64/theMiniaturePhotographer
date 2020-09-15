@@ -1,5 +1,5 @@
 <?php
-$temp = ['activate' => 'Activation Page', 'contact' => 'Contact Page', 'edit' => 'Edit Page', 'game' => 'Photography Quiz', 'index' => 'The Miniature Photographer', 'mainArticle' => 'Full Page', 'register' => 'Registration Page', 'success' => 'Successful Registration'];
+$temp = ['about' => 'About Page', 'activate' => 'Activation Page', 'contact' => 'Contact Page', 'edit' => 'Edit Page', 'game' => 'Photography Quiz', 'index' => 'The Miniature Photographer', 'mainArticle' => 'Full Page', 'register' => 'Registration Page', 'success' => 'Successful Registration'];
 
 if (array_key_exists($pageName, $temp)) {
     $title = $temp[$pageName];
