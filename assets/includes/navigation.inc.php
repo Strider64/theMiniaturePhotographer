@@ -35,7 +35,7 @@
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a href="about.php">
                     <div class="icon">
                         <i class="fas fa-address-card"></i>
                     </div>
