@@ -13,7 +13,7 @@
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a href="photo.php">
                     <div class="icon">
                         <i class="far fa-images"></i>
                     </div>

@@ -1,1 +1,1 @@
-theMiniaturePhotographer
+The Miniature Photographer

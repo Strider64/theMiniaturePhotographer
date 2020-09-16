@@ -5,5 +5,7 @@ require_once "vendor/autoload.php";
 // and all versions of PHP.
 session_unset();
 session_destroy();
-header('Location: index.php');
+
+$pageLoc = htmlspecialchars($_GET['pageLoc'] ?? "index.php");
+header('Location: ' . $pageLoc);
 exit();

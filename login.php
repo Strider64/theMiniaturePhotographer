@@ -4,6 +4,7 @@ require_once "vendor/autoload.php";
 
 use Miniature\Users as Login;
 
+$pageLoc = htmlspecialchars($_GET['pageLoc'] ?? "index.php");
 
 $login = new Login;
 
@@ -17,7 +18,7 @@ if ($submit === 'Login') {
     $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
     $id = $login->read($username, $password);
     if ($id) {
-        header('Location: index.php');
+        header('Location: ' . $pageLoc);
         exit();
     } else {
         header('Location: index.php');
