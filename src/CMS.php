@@ -49,9 +49,9 @@ class CMS {
         return \TRUE;
     }
 
-    public function getIntro(int $pageId, string $content , int $count = 200) {
-        $this->content = $content;
-        return substr($this->content, 0, $count) . '<a class="moreBtn" href="mainArticle.php?page=' . $pageId . '"> ...more</a>';
+    public function getIntro($content = "", $count = 200, $pageId = 0) {
+        $this->content = (string) $content;
+        return substr($this->content, 0, (int)$count) . '<a class="moreBtn" href="mainArticle.php?page=' . (int)$pageId . '"> ...more</a>';
     }
 
     public function page($id) {

@@ -89,9 +89,4 @@ class Pagination extends Journal {
         return $this->result;
     }
 
-    public function getIntro(string $content = "", int $count = 200) {
-        $this->content = $content;
-        return substr($this->content, 0, $count) . "...more";
-    }
-
 }
