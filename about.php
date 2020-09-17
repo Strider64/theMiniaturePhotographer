@@ -42,14 +42,5 @@ include_once 'assets/includes/header.inc.php';
     </div><!-- .sidebar -->
 </div><!-- .content -->    
 
-<footer class="footer-area">
-    <p>&copy;2020 The Miniature Photographer</p>
-</footer>
-
-</div><!-- .outer-wrap -->
-
-<script type="text/javascript" src="assets/js/new-sidebar-switcher.js"></script>
-
-</body>
-
-</html>
+<?php
+require_once 'assets/includes/footer.inc.php';

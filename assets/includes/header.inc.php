@@ -16,14 +16,14 @@ if (array_key_exists($pageName, $temp)) {
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="description" content="The Miniature Photography Website by John Pepp">
         <title><?= $title; ?></title>
-
-        <script src='https://www.google.com/recaptcha/api.js'></script>
+        <link rel="shortcut icon" href="favicon.ico">
+        
         <link rel="stylesheet" href="assets/css/stylesheet.css" type="text/css" media="all">
 
         <script src="https://kit.fontawesome.com/a8b40cbd7a.js" crossorigin="anonymous"></script>
-
-        <script type="text/javascript"src="assets/js/game.js" defer></script>
-
+        <?php if ($pageName === 'game') { ?>
+            <script type="text/javascript"src="assets/js/game.js" defer></script>
+        <?php } ?>
     </head>
 
     <body>
