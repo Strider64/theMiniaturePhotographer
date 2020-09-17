@@ -1,4 +1,4 @@
-The Miniature Photographer
+#The Miniature Photographer
 
 The Miniature Photographer website is my main website that shows off my photography and website designer/developer skills. I use straight HTML, CSS, Javascript and PHP to develop my websites and
 majority of my PHP is Object-Oriented Programming. This means I am alble to develop websites fairly fast and I do my best to keep up with the latest coding techniques when it comes Javascript
