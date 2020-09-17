@@ -7,7 +7,7 @@ am suppling my HTML, CSS, PHP and Javascree free here at Github as I feel a pers
 
 If you want me to to design and develop a website for you the only thing I ask is to have creative control over the website, plus I will only do both (design and develop). I will provide 
 a mockup of the website for you approval as afterall it is your website. I will NOT use any copyright content including images and videos for the design of the website. Like I said I 
-have the creative control when it comes to how the website looks with your final proval before I start the development phase of the website. A contract or written agreement will have 
+have the creative control when it comes to how the website looks with your final approval before I start the development phase of the website. A contract or written agreement will have 
 to be drawn up between us until I actually start to work on it. 
 
 All prices will be mention in the contract/agreement and any changes to the design or development of the website will occur additional charges unless the change is minor or somethhing that
