@@ -1,7 +1,7 @@
 # The Miniature Photographer
 
 The Miniature Photographer website is my main website that shows off my photography and website designer/developer skills. I use straight HTML, CSS, Javascript and PHP to develop my websites and
-majority of my PHP is Object-Oriented Programming. This means I am alble to develop websites fairly fast and I do my best to keep up with the latest coding techniques when it comes Javascript
+majority of my PHP is Object-Oriented Programming. This means I am able to develop websites fairly fast and I do my best to keep up with the latest coding techniques when it comes Javascript
 and PHP. I use NO Framworks or Libraries in my coding as I like trying to keep my websites fast and reliable. I do use a 3rd Party Emailer as I find it more robust and secure than coding my own. I 
 am suppling my HTML, CSS, PHP and Javascree free here at Github as I feel a person still needs to know what they are doing when it comes to developing a website. 
 
