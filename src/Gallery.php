@@ -27,7 +27,7 @@ class Gallery {
     }
 
     public function read() {
-        $this->query = 'select id, user_id, category thumb_path, path, Model, ExposureTime, Aperture, ISO, FocalLength, DATE_FORMAT(date_added, "%W, %M %e, %Y") as date_added, date_added as myDate FROM gallery ORDER BY myDate DESC';
+        $this->query = 'select id, user_id, category, thumb_path, path, Model, ExposureTime, Aperture, ISO, FocalLength, DATE_FORMAT(date_added, "%W, %M %e, %Y") as date_added, date_added as myDate FROM gallery ORDER BY myDate DESC';
         $this->stmt = static::pdo()->prepare($this->query); // Prepare the query:
         $this->stmt->execute(); // Execute the query with the supplied user's parameter(s):
         $this->result = $this->stmt->fetchAll(PDO::FETCH_OBJ);

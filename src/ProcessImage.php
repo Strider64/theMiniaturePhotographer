@@ -115,59 +115,12 @@ class ProcessImage {
         return $this->file['tmp_name'];
     }
 
-    public function checkOrientation() {
-        if (isset($this->exifData['Orientation'])) {
-            $this->orientation = $this->exifData['Orientation'];
-            if ($this->orientation != 1) {
-                $this->imgSize = 'portrait';
-                return $this->imgSize;
-            } else {
-                return $this->imgSize;
-            }
-        } else {
-            return $this->imgSize;
-        }
-    }
-
-    protected function orientation() {
-
-        $this->orientation = $this->exifData['Orientation'];
-        if ($this->orientation != 1) {
-            $this->img = imagecreatefromjpeg($this->newName);
-            $this->deg = 0;
-            switch ($this->orientation) {
-                case 3:
-                    $this->deg = 180;
-                    break;
-                case 6:
-                    $this->deg = 270;
-                    break;
-                case 8:
-                    $this->deg = 90;
-                    break;
-            }
-            if ($this->deg) {
-                $this->img = imagerotate($this->img, $this->deg, 0);
-            }
-            // then rewrite the rotated image back to the disk as $this->newName
-            imagejpeg($this->img, $this->newName, 95);
-        } // if there is some rotation necessary        
-    }
-
-    private function imgOrientation() {
-        if (function_exists('exif_read_data')) {
-            $this->exifData = exif_read_data($this->newName);
-            if ($this->exifData && isset($this->exifData['Orientation'])) {
-                $this->orientation();
-            } // if have the exif orientation info
-        } // if function exists         
-    }
+   
 
     public function saveIMG() {
         $this->unique = $this->uniqueName();
         $this->tmpName = $this->getTMPName();
         $this->newName = strtolower($this->preExt . $this->unique . $this->extension);
-        $this->imgOrientation();
         if (!$this->file['error']) {
             move_uploaded_file($this->tmpName, $this->newName);
             return $this->newName;
