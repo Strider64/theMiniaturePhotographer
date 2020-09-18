@@ -4,7 +4,9 @@ require_once "vendor/autoload.php";
 
 use Miniature\Calendar;
 use Miniature\Users as Login;
-
+use Miniature\ProcessImage as Process;
+use Miniature\Resize;
+use Miniature\Gallery;
 
 $login = new Login();
 
@@ -20,13 +22,90 @@ $calendar = $monthly->generateCalendar($basename);
 
 $username = (isset($_SESSION['id'])) ? $login->username($_SESSION['id']) : null;
 
+$gallery = new Gallery();
 
+$upload = (htmlspecialchars($_POST['submit'] ?? null));
+
+if ($upload && $upload === 'upload') {
+    if (isset($_FILES) && $_FILES['file']['error'] !== 4) {
+        $file = $_FILES['file']; // Assign image data to $file array:
+        $thumb_path = $_FILES['file'];
+        $data['user_id'] = $_SESSION['id'];
+        $data['author'] = $username;
+        $data['category'] = htmlspecialchars($_POST['category']);
+        $imgObject = new Process($file, 'gallery-photos-');
+
+        $check['image_status'] = $imgObject->processImage();
+        $check['file_type'] = $imgObject->checkFileType();
+        $check['file_ext'] = $imgObject->checkFileExt();
+
+        /*
+         * Extract the EXIF data out of the image (if it has any)
+         */
+        $exif_data = exif_read_data($imgObject->saveIMG());
+        if ($exif_data['Model']) {
+            $data['Model'] = "Sony " . $exif_data['Model'];
+            $data['ExposureTime'] = $exif_data['ExposureTime'] . "s";
+            $data['Aperture'] = $exif_data['COMPUTED']['ApertureFNumber'];
+            $data['ISO'] = "ISO " . $exif_data['ISOSpeedRatings'];
+            $data['FocalLength'] = $exif_data['FocalLengthIn35mmFilm'] . "mm";
+        }
+
+        if (in_array(TRUE, $check)) {
+            $errMsg = "There's something wrong with the image file!<b>";
+        } else {
+            $data['path'] = $imgObject->saveIMG();
+            $imageResizeType = $imgObject->checkOrientation();
+            // *** 1)  Create a new instance of class Resize:
+            $resizePic = new Resize($data['path']);
+            // *** 2) Resize image (options: exact, portrait, landscape, auto, crop)
+            $resizePic->resizeImage(2048, 1365, $imageResizeType);
+            // *** 3) Save image to directory:
+            $resizePic->saveImage($data['path'], 100);
+        }
+
+        $thumbObject = new Process($thumb_path, 'gallery-photos-', false);
+        $check['image_status'] = $thumbObject->processImage();
+        $check['file_type'] = $thumbObject->checkFileType();
+        $check['file_ext'] = $thumbObject->checkFileExt();
+        //echo "<pre>" . print_r($check, 1) . "</pre>\n";
+        if (in_array(TRUE, $check)) {
+            $errMsg = "There's something wrong with the image file!<b>";
+        } else {
+            $data['thumb_path'] = $thumbObject->saveIMG();
+            copy($data['path'], $data['thumb_path']);
+            // *** 1)  Create a new instance of class Resize:
+            $resizePic = new Resize($data['thumb_path']);
+            // *** 2) Resize image (options: exact, portrait, landscape, auto, crop)
+            $resizePic->resizeImage(600, 400, 'exact');
+            // *** 3) Save image to directory:
+            $resizePic->saveImage($data['thumb_path'], 100);
+            /*
+             * Save all the data from the form to the database table: cms
+             */
+            $result = $gallery->create($data);
+            if ($result) {
+                header('Location: photo.php');
+                exit();
+            }
+        }
+    } // End of $_FILES If Statement:
+}
+
+$photos = $gallery->read();
+//echo "<pre>" . print_r($photos, 1) . "</pre>";
 
 include_once 'assets/includes/header.inc.php';
 ?>
 <div class="content">
     <main class="main-area">
-
+        <ul id="slides">
+            <li class="slide showing">Slide 1</li>
+            <li class="slide">Slide 2</li>
+            <li class="slide">Slide 3</li>
+            <li class="slide">Slide 4</li>
+            <li class="slide">Slide 5</li>
+        </ul>
     </main>
 
     <div class="sidebar">
@@ -47,6 +126,12 @@ include_once 'assets/includes/header.inc.php';
                     <legend>Upload Image</legend>
                     <input class="uploadImage" type="file" name="file">
                     <input class="uploadBtn" type="submit" name="submit" value="upload">
+                    <select class="category" name="category">
+                        <option value="wildlife">Wildlife</option>
+                        <option value="lego">LEGO</option>
+                        <option value="portraits-landscapes">Portraits / Landscapes</option>
+                        <option value="other">Other</option>
+                    </select>   
                 </fieldset>
             </form>
             <a class="btn3" href="logout.php?pageLoc=photo.php">Log Off</a>
