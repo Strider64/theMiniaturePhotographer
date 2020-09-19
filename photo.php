@@ -4,10 +4,8 @@ require_once "vendor/autoload.php";
 
 use Miniature\Calendar;
 use Miniature\Users as Login;
-use Miniature\ProcessImage as Process;
-use Miniature\Resize;
 use Miniature\Gallery;
-
+ini_set('memory_limit','256M');
 $login = new Login();
 
 /*
@@ -20,6 +18,9 @@ $calendar = $monthly->generateCalendar($basename);
 
 $username = (isset($_SESSION['id'])) ? $login->username($_SESSION['id']) : null;
 
+define('IMAGE_WIDTH', 2048);
+define('IMAGE_HEIGHT', 1365);
+
 $gallery = new Gallery();
 
 $upload = filter_input(INPUT_POST, 'action', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
@@ -28,23 +29,15 @@ if ($upload && $upload === 'upload') {
     $data['user_id'] = $_SESSION['id'];
     $data['author'] = $username;
     $data['category'] = htmlspecialchars($_POST['category']);
-    if (isset($_FILES) && $_FILES['file']['error'] !== 4) {
-        
-        $file = $_FILES['file']; // Assign image data to $file array:
-        $thumb_path = $_FILES['file'];
+    if (is_array($_FILES)) {
 
-        $imgObject = new Process($file, 'gallery-photos-');
-
-        $check['image_status'] = $imgObject->processImage();
-        $check['file_type'] = $imgObject->checkFileType();
-        $check['file_ext'] = $imgObject->checkFileExt();
-
+        $large = $_FILES['file']['tmp_name'];
+        $thumb = $_FILES['file']['tmp_name'];
 
         /*
          * Extract the EXIF data out of the image (if it has any)
          */
-        $exif_data = exif_read_data($imgObject->saveIMG());
-
+        $exif_data = exif_read_data($large);
         if ($exif_data['Model']) {
             $data['Model'] = "Sony " . $exif_data['Model'];
             $data['ExposureTime'] = $exif_data['ExposureTime'] . "s";
@@ -53,50 +46,72 @@ if ($upload && $upload === 'upload') {
             $data['FocalLength'] = $exif_data['FocalLengthIn35mmFilm'] . "mm";
         }
 
+        function imageResize($imageSrc, $imageWidth, $imageHeight, $newImageWidth = IMAGE_WIDTH, $newImageHeight = IMAGE_HEIGHT) {
+            $newImageLayer = imagecreatetruecolor($newImageWidth, $newImageHeight);
+            imagecopyresampled($newImageLayer, $imageSrc, 0, 0, 0, 0, $newImageWidth, $newImageHeight, $imageWidth, $imageHeight);
 
-
-        if (in_array(TRUE, $check)) {
-            $errMsg = "There's something wrong with the image file!<b>";
-        } else {
-            $data['path'] = $imgObject->saveIMG();
-            
-            // *** 1)  Create a new instance of class Resize:
-            $resizePic = new Resize($data['path']);
-            // *** 2) Resize image (options: exact, portrait, landscape, auto, crop)
-            $resizePic->resizeImage(1433, 956, 'exact');
-            // *** 3) Save image to directory:
-            $resizePic->saveImage($data['path'], 100);
+            return $newImageLayer;
         }
 
-        $thumbObject = new Process($thumb_path, 'gallery-photos-', false);
-        $check['image_status'] = $thumbObject->processImage();
-        $check['file_type'] = $thumbObject->checkFileType();
-        $check['file_ext'] = $thumbObject->checkFileExt();
-        
-        if (in_array(TRUE, $check)) {
-            $errMsg = "There's something wrong with the image file!<b>";
-        } else {
-            $data['thumb_path'] = $thumbObject->saveIMG();
+        function myFunction($uploadedFile, $dirPath = "assets/large/", $preEXT = 'img-', $newImageWidth = IMAGE_WIDTH, $newImageHeight = IMAGE_HEIGHT) {
+            $sourceProperties = getimagesize($uploadedFile);
+            $newFileName = time();
             
-            copy($data['path'], $data['thumb_path']);
+            global $data;
             
-            // *** 1)  Create a new instance of class Resize:
-            $resizePic = new Resize($data['thumb_path']);
-            // *** 2) Resize image (options: exact, portrait, landscape, auto, crop)
-            $resizePic->resizeImage(600, 400, 'exact');
-            // *** 3) Save image to directory:
-            $resizePic->saveImage($data['thumb_path'], 100);
-            /*
-             * Save all the data from the form to the database table: cms
-             */
-            $result = $gallery->create($data);
-            if ($result) {
-                header('Location: photo.php');
-                exit();
+            $ext = pathinfo($_FILES['file']['name'], PATHINFO_EXTENSION);
+            $imageType = $sourceProperties[2];
+            //echo '$uploadedFile' . $uploadedFile . ' $dirPath ' . $dirPath . "<br>";
+            if ($dirPath == "assets/large/") {
+                $data['path'] = $dirPath . $preEXT . $newFileName . '.' . $ext;
+            } else {
+                $data['thumb_path'] = $dirPath . $preEXT . $newFileName . '.' . $ext;
+            }
+            
+            switch ($imageType) {
+
+
+                case IMAGETYPE_PNG:
+                    $imageSrc = imagecreatefrompng($uploadedFile);
+                    $tmp = imageResize($imageSrc, $sourceProperties[0], $sourceProperties[1], $newImageWidth, $newImageHeight);
+                    imagepng($tmp, $dirPath . $preEXT . $newFileName . '.' . $ext);
+                    break;
+
+                case IMAGETYPE_JPEG:
+                    $imageSrc = imagecreatefromjpeg($uploadedFile);
+
+                    $tmp = imageResize($imageSrc, $sourceProperties[0], $sourceProperties[1], $newImageWidth, $newImageHeight);
+                    
+                    imagejpeg($tmp, $dirPath . $preEXT . $newFileName . '.' . $ext);
+                    break;
+
+                case IMAGETYPE_GIF:
+                    $imageSrc = imagecreatefromgif($uploadedFile);
+                    $tmp = imageResize($imageSrc, $sourceProperties[0], $sourceProperties[1], $newImageWidth, $newImageHeight);
+                    imagegif($tmp, $dirPath . $preEXT . $newFileName . '.' . $ext);
+                    break;
+
+                default:
+                    echo "Invalid Image type.";
+                    exit;
+                    break;
+            }
+            
+            return true;
+        }
+
+        $result = myFunction($large);
+        if ($result) {
+            $saveStatus = myFunction($thumb, 'assets/thumbnails/', 'thumb-', 600, 400);
+            if ($saveStatus) {
+                //echo "<pre>" . print_r($data, 1) . "</pre>";
+                $gallery->create($data);
             }
         }
-    } // End of $_FILES If Statement:
-}
+    } // END OF $_FILES
+} // Submit
+
+
 
 $photos = $gallery->read();
 //echo "<pre>" . print_r($photos, 1) . "</pre>";
