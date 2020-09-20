@@ -15,7 +15,7 @@
 </script>
 <script src='https://www.google.com/recaptcha/api.js' async defer></script>
 <?php } ?>
-<script src="assets/js/slideshow.js"></script>
+<!--<script src="assets/js/slideshow.js"></script>-->
 </body>
 
 </html>

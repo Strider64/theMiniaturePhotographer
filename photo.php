@@ -5,7 +5,8 @@ require_once "vendor/autoload.php";
 use Miniature\Calendar;
 use Miniature\Users as Login;
 use Miniature\Gallery;
-ini_set('memory_limit','256M');
+
+ini_set('memory_limit', '256M');
 $login = new Login();
 
 /*
@@ -56,9 +57,9 @@ if ($upload && $upload === 'upload') {
         function myFunction($uploadedFile, $dirPath = "assets/large/", $preEXT = 'img-', $newImageWidth = IMAGE_WIDTH, $newImageHeight = IMAGE_HEIGHT) {
             $sourceProperties = getimagesize($uploadedFile);
             $newFileName = time();
-            
+
             global $data;
-            
+
             $ext = pathinfo($_FILES['file']['name'], PATHINFO_EXTENSION);
             $imageType = $sourceProperties[2];
             //echo '$uploadedFile' . $uploadedFile . ' $dirPath ' . $dirPath . "<br>";
@@ -67,7 +68,7 @@ if ($upload && $upload === 'upload') {
             } else {
                 $data['thumb_path'] = $dirPath . $preEXT . $newFileName . '.' . $ext;
             }
-            
+
             switch ($imageType) {
 
 
@@ -81,7 +82,7 @@ if ($upload && $upload === 'upload') {
                     $imageSrc = imagecreatefromjpeg($uploadedFile);
 
                     $tmp = imageResize($imageSrc, $sourceProperties[0], $sourceProperties[1], $newImageWidth, $newImageHeight);
-                    
+
                     imagejpeg($tmp, $dirPath . $preEXT . $newFileName . '.' . $ext);
                     break;
 
@@ -96,7 +97,7 @@ if ($upload && $upload === 'upload') {
                     exit;
                     break;
             }
-            
+
             return true;
         }
 
@@ -120,19 +121,16 @@ include_once 'assets/includes/header.inc.php';
 ?>
 <div class="content">
     <main class="main-area">
-        <?php
-        $index = 0;
-        echo '<ul id="slides">';
-        foreach ($photos as $photo) {
-            if ($index === 0) {
-                echo '<li class="slide showing"><img src="' . $photo->thumb_path . '" alt=""></li>';
-            } else {
-                echo '<li class="slide"><img src="' . $photo->thumb_path . '" alt=""></li>';
+        <div id="gallery" class="frame" data-total="<?php echo count($photos); ?>">
+            <?php
+            $x = 1;
+            foreach ($photos as $photo) {
+                $cameraInfo = (($photo->Model) ? $photo->Model . ' --- ' . $photo->FocalLength . ' ' . $photo->Aperture . ' ' . $photo->ISO . ' ' . $photo->ExposureTime : null);
+                echo '<a class="image' . $x . '" href="' . $photo->path . '" title="' . $cameraInfo . '"><img class="box" src="' . $photo->thumb_path . '" alt="' . $photo->category . '">' . '</a>' . "\n";
+                $x += 1;
             }
-            $index += 1;
-        }
-        echo '</ul>';
-        ?>
+            ?>
+        </div>
     </main>
 
     <div class="sidebar">
@@ -181,3 +179,14 @@ include_once 'assets/includes/header.inc.php';
 
 <?php
 require_once 'assets/includes/footer.inc.php';
+//        $index = 0;
+//        echo '<ul id="slides">';
+//        foreach ($photos as $photo) {
+//            if ($index === 0) {
+//                echo '<li class="slide showing"><img src="' . $photo->thumb_path . '" alt=""></li>';
+//            } else {
+//                echo '<li class="slide"><img src="' . $photo->thumb_path . '" alt=""></li>';
+//            }
+//            $index += 1;
+//        }
+//        echo '</ul>';

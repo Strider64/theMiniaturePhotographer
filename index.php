@@ -9,7 +9,7 @@ use Miniature\Pagination;
 use Miniature\ProcessImage as Process;
 use Miniature\Resize;
 use Miniature\Linkify;
-
+ini_set('memory_limit', '256M');
 $linkify = new Linkify();
 $login = new Login;
 $journal = new CMS();
@@ -41,12 +41,13 @@ if ($username) {
     $status = $login->checkSecurity($_SESSION['id']);
 }
 
-$insert = (htmlspecialchars($_POST['submit'] ?? null));
-/*
- * New Comment Data Entry code
- */
+define('IMAGE_WIDTH', 2048);
+define('IMAGE_HEIGHT', 1365);
+        
+$upload = filter_input(INPUT_POST, 'action', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
-if ($insert) {
+if ($upload && $upload === 'upload') {
+
 
     $data['user_id'] = filter_input(INPUT_POST, 'user_id', FILTER_SANITIZE_NUMBER_INT);
     $data['author'] = $username;
@@ -54,20 +55,15 @@ if ($insert) {
     $data['heading'] = filter_input(INPUT_POST, 'heading', FILTER_DEFAULT);
     $data['content'] = filter_input(INPUT_POST, 'content', FILTER_DEFAULT);
     $data['post'] = 'on';
+    if (is_array($_FILES)) {
 
-    if (isset($_FILES) && $_FILES['file']['error'] !== 4) {
-        $file = $_FILES['file']; // Assign image data to $file array:
-
-        $imgObject = new Process($file, 'photos-');
-
-        $check['image_status'] = $imgObject->processImage();
-        $check['file_type'] = $imgObject->checkFileType();
-        $check['file_ext'] = $imgObject->checkFileExt();
+        $large = $_FILES['file']['tmp_name'];
+        $thumb = $_FILES['file']['tmp_name'];
 
         /*
          * Extract the EXIF data out of the image (if it has any)
          */
-        $exif_data = exif_read_data($imgObject->saveIMG());
+        $exif_data = exif_read_data($large);
         if ($exif_data['Model']) {
             $data['Model'] = "Sony " . $exif_data['Model'];
             $data['ExposureTime'] = $exif_data['ExposureTime'] . "s";
@@ -76,26 +72,70 @@ if ($insert) {
             $data['FocalLength'] = $exif_data['FocalLengthIn35mmFilm'] . "mm";
         }
 
-        if (in_array(TRUE, $check)) {
-            $errMsg = "There's something wrong with the image file!<b>";
-        } else {
-            $data['image'] = $imgObject->saveIMG();
-            $imageResizeType = $imgObject->checkOrientation();
-            // *** 1)  Create a new instance of class Resize:
-            $resizePic = new Resize($data['image']);
-            // *** 2) Resize image (options: exact, portrait, landscape, auto, crop)
-            $resizePic->resizeImage(800, 533, $imageResizeType);
-            // *** 3) Save image to directory:
-            $resizePic->saveImage($data['image'], 100);
+        function imageResize($imageSrc, $imageWidth, $imageHeight, $newImageWidth = IMAGE_WIDTH, $newImageHeight = IMAGE_HEIGHT) {
+            $newImageLayer = imagecreatetruecolor($newImageWidth, $newImageHeight);
+            imagecopyresampled($newImageLayer, $imageSrc, 0, 0, 0, 0, $newImageWidth, $newImageHeight, $imageWidth, $imageHeight);
+
+            return $newImageLayer;
         }
 
-        $result = $cms->create($data);
-        if ($result) {
-            header("Location: index.php");
-            exit();
+        function myFunction($uploadedFile, $dirPath = "assets/large/", $preEXT = 'img-', $newImageWidth = IMAGE_WIDTH, $newImageHeight = IMAGE_HEIGHT) {
+            $sourceProperties = getimagesize($uploadedFile);
+            $newFileName = time();
+
+            global $data;
+
+            $ext = pathinfo($_FILES['file']['name'], PATHINFO_EXTENSION);
+            $imageType = $sourceProperties[2];
+            //echo '$uploadedFile' . $uploadedFile . ' $dirPath ' . $dirPath . "<br>";
+            if ($dirPath == "assets/large/") {
+                $data['path'] = $dirPath . $preEXT . $newFileName . '.' . $ext;
+            } else {
+                $data['thumb_path'] = $dirPath . $preEXT . $newFileName . '.' . $ext;
+            }
+
+            switch ($imageType) {
+
+
+                case IMAGETYPE_PNG:
+                    $imageSrc = imagecreatefrompng($uploadedFile);
+                    $tmp = imageResize($imageSrc, $sourceProperties[0], $sourceProperties[1], $newImageWidth, $newImageHeight);
+                    imagepng($tmp, $dirPath . $preEXT . $newFileName . '.' . $ext);
+                    break;
+
+                case IMAGETYPE_JPEG:
+                    $imageSrc = imagecreatefromjpeg($uploadedFile);
+
+                    $tmp = imageResize($imageSrc, $sourceProperties[0], $sourceProperties[1], $newImageWidth, $newImageHeight);
+
+                    imagejpeg($tmp, $dirPath . $preEXT . $newFileName . '.' . $ext);
+                    break;
+
+                case IMAGETYPE_GIF:
+                    $imageSrc = imagecreatefromgif($uploadedFile);
+                    $tmp = imageResize($imageSrc, $sourceProperties[0], $sourceProperties[1], $newImageWidth, $newImageHeight);
+                    imagegif($tmp, $dirPath . $preEXT . $newFileName . '.' . $ext);
+                    break;
+
+                default:
+                    echo "Invalid Image type.";
+                    exit;
+                    break;
+            }
+
+            return true;
         }
-    } // End of $_FILES If Statement:
-} // End of if statement:
+
+        $result = myFunction($large);
+        if ($result) {
+            $saveStatus = myFunction($thumb, 'assets/thumbnails/', 'thumb-', 600, 400);
+            if ($saveStatus) {
+                //echo "<pre>" . print_r($data, 1) . "</pre>";
+                $cms->create($data);
+            }
+        }
+    } // END OF $_FILES
+} // Submit
 
 /*
  * Read in current page entries 
@@ -124,7 +164,7 @@ include_once 'assets/includes/header.inc.php';
             }
             echo '<div class="card-image" href="#" data-id="' . $entry->id . '">';
             echo '<picture class="thumbnail">';
-            echo '<img src="' . $entry->image . '" alt="' . $entry->heading . '">';
+            echo '<img src="' . $entry->thumb_path . '" alt="' . $entry->heading . '">';
             echo '</picture>';
             echo '<div class="card-content">';
             echo '<h2>' . $entry->heading . '<span class="subheading">by ' . $entry->author . ' on ' . $entry->date_added . '</span></h2>';
@@ -158,7 +198,7 @@ include_once 'assets/includes/header.inc.php';
             </nav>
         </div>
 
-        <?php if ($username) { ?>  
+<?php if ($username) { ?>  
 
             <form class="cms-editor" action="index.php" method="post" enctype="multipart/form-data">
                 <fieldset id="mainEntry">
@@ -176,7 +216,7 @@ include_once 'assets/includes/header.inc.php';
             </form>
 
             <a class="btn3" href="logout.php">Log Off</a>
-        <?php } else { ?>
+<?php } else { ?>
             <div class="login">
                 <h1>Login to Web App</h1>
                 <form method="post" action="login.php">
@@ -187,7 +227,7 @@ include_once 'assets/includes/header.inc.php';
             </div>
             <a class="btn1" href="register.php">register?</a>
 
-        <?php } ?>
+<?php } ?>
     </div><!-- .sidebar -->
 </div><!-- .content -->
 

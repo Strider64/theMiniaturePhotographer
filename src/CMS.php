@@ -20,14 +20,14 @@ class CMS {
     }
 
     public function create(array $data) {
-        $this->query = 'INSERT INTO cms( user_id, author, image, post, page, Model, ExposureTime, Aperture, ISO, FocalLength, heading, content, date_updated, date_added) VALUES ( :user_id, :author, :image, :post, :page, :Model, :ExposureTime, :Aperture, :ISO, :FocalLength, :heading, :content, NOW(), NOW())';
+        $this->query = 'INSERT INTO cms( user_id, author, post, page, thumb_path, path, Model, ExposureTime, Aperture, ISO, FocalLength, heading, content, date_updated, date_added) VALUES ( :user_id, :author, :post, :page, :thumb_path, :path, :Model, :ExposureTime, :Aperture, :ISO, :FocalLength, :heading, :content, NOW(), NOW())';
         $this->stmt = static::pdo()->prepare($this->query);
-        $this->result = $this->stmt->execute([':user_id' => $data['user_id'], ':author' => $data['author'], ':image' => $data['image'], ':post' => $data['post'], ':page' => $data['page'], ':Model' => $data['Model'], ':ExposureTime' => $data['ExposureTime'], ':Aperture' => $data['Aperture'], ':ISO' => $data['ISO'], ':FocalLength' => $data['FocalLength'], ':heading' => $data['heading'], ':content' => trim($data['content'])]);
+        $this->result = $this->stmt->execute([':user_id' => $data['user_id'], ':author' => $data['author'], ':post' => $data['post'], ':page' => $data['page'], ':thumb_path' => $data['thumb_path'], ':path' => $data['path'], ':Model' => $data['Model'], ':ExposureTime' => $data['ExposureTime'], ':Aperture' => $data['Aperture'], ':ISO' => $data['ISO'], ':FocalLength' => $data['FocalLength'], ':heading' => $data['heading'], ':content' => trim($data['content'])]);
         return true;
     }
 
     public function read($page = "index.php") {
-        $this->query = 'SELECT id, user_id, author, page, image, post, page, Model, ExposureTime, Aperture, ISO, FocalLength, heading, content, DATE_FORMAT(date_added, "%W, %M %e, %Y") as date_added, date_added as myDate FROM cms WHERE page=:page ORDER BY myDate DESC';
+        $this->query = 'SELECT id, user_id, author, page, post, page, thumb_path, path, Model, ExposureTime, Aperture, ISO, FocalLength, heading, content, DATE_FORMAT(date_added, "%W, %M %e, %Y") as date_added, date_added as myDate FROM cms WHERE page=:page ORDER BY myDate DESC';
         $this->stmt = static::pdo()->prepare($this->query); // Prepare the query:
         $this->stmt->execute([':page' => $page]); // Execute the query with the supplied user's parameter(s):
         $this->result = $this->stmt->fetchAll(PDO::FETCH_OBJ);
@@ -55,7 +55,7 @@ class CMS {
     }
 
     public function page($id) {
-        $this->query = 'SELECT id, user_id, author, page, image, post, page, Model, ExposureTime, Aperture, ISO, FocalLength, heading, content, DATE_FORMAT(date_added, "%W, %M %e, %Y") as date_added, date_added as myDate FROM cms WHERE id=:id';
+        $this->query = 'SELECT id, user_id, author, page, post, page, thumb_path, path, Model, ExposureTime, Aperture, ISO, FocalLength, heading, content, DATE_FORMAT(date_added, "%W, %M %e, %Y") as date_added, date_added as myDate FROM cms WHERE id=:id';
         $this->stmt = static::pdo()->prepare($this->query);
         $this->stmt->execute([':id' => $id]);
         $this->result = $this->stmt->fetch(PDO::FETCH_OBJ);

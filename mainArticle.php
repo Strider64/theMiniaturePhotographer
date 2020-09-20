@@ -39,7 +39,7 @@ include_once 'assets/includes/header.inc.php';
             echo '<article class="fullpage">';
             echo '<div class="page-image" href="#" data-id="' . $entry->id . '">';
             echo '<picture class="thumbnail">';
-            echo '<img src="' . $entry->image . '" alt="' . $entry->heading . '">';
+            echo '<img src="' . $entry->thumb_path . '" alt="' . $entry->heading . '">';
             echo '</picture>';
             echo '<div class="page-content">';
             echo '<h2>' . $entry->heading . '<span class="subheading">by ' . $entry->author . ' on ' . $entry->date_added . '</span></h2>';
