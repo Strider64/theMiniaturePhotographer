@@ -328,13 +328,9 @@ Header styles minus menu
   height: 14em;
   background: #e6e6e6; }
 
-.site-title {
-  margin: 0 0 1em;
-  padding: 1em 0;
-  font-size: 2em;
-  font-weight: 300;
-  text-align: center;
-  color: black; }
+img.logo {
+  width: 952px;
+  height: 252px; }
 
 @media screen and (min-width: 44.44em) {
   .site-title {
@@ -943,9 +939,6 @@ body {
 .masthead {
   background: #333333; }
 
-.site-title {
-  color: white; }
-
 .card, .cardThreeColumn {
   background: white;
   margin-bottom: 2em; }
@@ -1013,9 +1006,6 @@ body {
 
 .masthead {
   background: #333333; }
-
-.site-title {
-  color: white; }
 
 .page {
   width: 80%;
@@ -1792,19 +1782,7 @@ div.frame {
 
 /*@import "partials/_slideshow.scss";*/
 .masthead {
-  background: #fff url(../images/img-hummingbird-header-001.png) no-repeat right bottom; }
-
-.site-title {
-  position: relative;
-  top: 10px;
-  color: black; }
-  .site-title span {
-    position: absolute;
-    top: 20px; }
-
-img.flower {
-  width: 2.344em;
-  height: 2.344em; }
+  background: #fff; }
 
 .main-area {
   padding: 2em; }

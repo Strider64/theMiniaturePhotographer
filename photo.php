@@ -44,7 +44,7 @@ if ($upload && $upload === 'upload') {
             $data['ExposureTime'] = $exif_data['ExposureTime'] . "s";
             $data['Aperture'] = $exif_data['COMPUTED']['ApertureFNumber'];
             $data['ISO'] = "ISO " . $exif_data['ISOSpeedRatings'];
-            $data['FocalLength'] = $exif_data['FocalLengthIn35mmFilm'] . "mm";
+            (isset($data['FocalLength'])) ? $data['FocalLength'] = $exif_data['FocalLengthIn35mmFilm'] . "mm" : $data['FocalLength'] = null;
         }
 
         function imageResize($imageSrc, $imageWidth, $imageHeight, $newImageWidth = IMAGE_WIDTH, $newImageHeight = IMAGE_HEIGHT) {
@@ -54,15 +54,13 @@ if ($upload && $upload === 'upload') {
             return $newImageLayer;
         }
 
-        function myFunction($uploadedFile, $dirPath = "assets/large/", $preEXT = 'img-', $newImageWidth = IMAGE_WIDTH, $newImageHeight = IMAGE_HEIGHT) {
+        function myFunction(&$data, $uploadedFile, $dirPath = "assets/large/", $preEXT = 'img-', $newImageWidth = IMAGE_WIDTH, $newImageHeight = IMAGE_HEIGHT) {
             $sourceProperties = getimagesize($uploadedFile);
             $newFileName = time();
 
-            global $data;
-
             $ext = pathinfo($_FILES['file']['name'], PATHINFO_EXTENSION);
             $imageType = $sourceProperties[2];
-            //echo '$uploadedFile' . $uploadedFile . ' $dirPath ' . $dirPath . "<br>";
+            
             if ($dirPath == "assets/large/") {
                 $data['path'] = $dirPath . $preEXT . $newFileName . '.' . $ext;
             } else {
@@ -71,7 +69,10 @@ if ($upload && $upload === 'upload') {
 
             switch ($imageType) {
 
-
+                /*
+                 * You only need to $imageSrc line and imagepng(), plus get rid of $tmp replace it with $imageSrc.
+                 * That is if you don't need to resize:
+                 */
                 case IMAGETYPE_PNG:
                     $imageSrc = imagecreatefrompng($uploadedFile);
                     $tmp = imageResize($imageSrc, $sourceProperties[0], $sourceProperties[1], $newImageWidth, $newImageHeight);
@@ -80,9 +81,7 @@ if ($upload && $upload === 'upload') {
 
                 case IMAGETYPE_JPEG:
                     $imageSrc = imagecreatefromjpeg($uploadedFile);
-
                     $tmp = imageResize($imageSrc, $sourceProperties[0], $sourceProperties[1], $newImageWidth, $newImageHeight);
-
                     imagejpeg($tmp, $dirPath . $preEXT . $newFileName . '.' . $ext);
                     break;
 
@@ -101,9 +100,12 @@ if ($upload && $upload === 'upload') {
             return true;
         }
 
-        $result = myFunction($large);
+        $result = myFunction($data, $large);
         if ($result) {
-            $saveStatus = myFunction($thumb, 'assets/thumbnails/', 'thumb-', 600, 400);
+            /*
+             * 
+             */
+            $saveStatus = myFunction($data, $thumb, 'assets/thumbnails/', 'thumb-', 600, 400);
             if ($saveStatus) {
                 //echo "<pre>" . print_r($data, 1) . "</pre>";
                 $gallery->create($data);

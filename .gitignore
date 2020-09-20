@@ -12,3 +12,5 @@ work/
 assets/large/
 
 assets/thumbnails/
+
+.DS_Store

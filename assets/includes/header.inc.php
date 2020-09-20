@@ -39,7 +39,7 @@ if (array_key_exists($pageName, $temp)) {
                 <div class="centered">
 
                     <div class="site-branding">
-                        <h1 class="site-title">The Miniature Photographer<span><img class="flower" src="assets/images/img-flower-001.png" alt="Pretty Flower"></span></h1>
+                        <img class="logo" src="assets/images/img-header-002.png" alt="LOGO">
 
                     </div>
                 </div><!-- .centered -->
