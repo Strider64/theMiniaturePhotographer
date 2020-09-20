@@ -126,7 +126,7 @@ include_once 'assets/includes/header.inc.php';
             $x = 1;
             foreach ($photos as $photo) {
                 $cameraInfo = (($photo->Model) ? $photo->Model . ' --- ' . $photo->FocalLength . ' ' . $photo->Aperture . ' ' . $photo->ISO . ' ' . $photo->ExposureTime : null);
-                echo '<a class="image' . $x . '" href="' . $photo->path . '" title="' . $cameraInfo . '"><img class="box" src="' . $photo->thumb_path . '" alt="' . $photo->category . '">' . '</a>' . "\n";
+                echo '<a id="image' . $x . '" href="' . $photo->path . '" title="' . $cameraInfo . '"><img class="box" src="' . $photo->thumb_path . '" alt="' . $photo->category . '">' . '</a>' . "\n";
                 $x += 1;
             }
             ?>
