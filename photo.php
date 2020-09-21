@@ -60,7 +60,7 @@ if ($upload && $upload === 'upload') {
 
             $ext = pathinfo($_FILES['file']['name'], PATHINFO_EXTENSION);
             $imageType = $sourceProperties[2];
-            
+
             if ($dirPath == "assets/large/") {
                 $data['path'] = $dirPath . $preEXT . $newFileName . '.' . $ext;
             } else {
@@ -108,7 +108,11 @@ if ($upload && $upload === 'upload') {
             $saveStatus = myFunction($data, $thumb, 'assets/thumbnails/', 'thumb-', 600, 400);
             if ($saveStatus) {
                 //echo "<pre>" . print_r($data, 1) . "</pre>";
-                $gallery->create($data);
+                $result = $gallery->create($data);
+                if ($result) {
+                    header("Location: photo.php");
+                    exit();
+                }
             }
         }
     } // END OF $_FILES
