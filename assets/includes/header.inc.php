@@ -17,7 +17,7 @@ if (array_key_exists($pageName, $temp)) {
         <meta name="description" content="The Miniature Photography Website by John Pepp">
         <title><?= $title; ?></title>
         <link rel="shortcut icon" href="favicon.ico">
-        
+
         <link rel="stylesheet" href="assets/css/stylesheet.css" type="text/css" media="all">
 
         <script src="https://kit.fontawesome.com/a8b40cbd7a.js" crossorigin="anonymous"></script>
@@ -27,6 +27,33 @@ if (array_key_exists($pageName, $temp)) {
     </head>
 
     <body>
+        <div id="pictureBox" class="shade">
+
+            <div id="picture">
+                <div class="play">
+                    <button class="controls" id="pause">Play</button>
+                </div>
+
+
+
+                <img id="pictureELE" src="assets/images/img-1600483630.jpg" alt="Big Screen Picture">
+
+
+                <div class="exifInfo">
+                    <p id="exifData"></p>
+                </div>  
+                <div class="exitBtn">
+                    <a id="exitBtn" class="btn" href="#">&#8592; Exit</a>
+                </div>
+            </div>
+            <div class="prevSlide">
+                <a id="preSlide" href="#">&#8592; Prev</a>
+            </div>
+            <div class="nextSlide">
+                <a id="nextSlide" href="#">Next &#8594;</a>  
+            </div>
+
+        </div>
         <a class="skip-link screen-reader-text" href="#content">Skip to content</a>
         <div class="outer-wrap">
 

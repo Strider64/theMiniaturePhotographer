@@ -1782,6 +1782,76 @@ div.frame {
     div.frame img.box:hover {
       background-color: #000; }
 
+.shade {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 20000;
+  background-color: rgba(0, 0, 0, 0.65); }
+  .shade #picture {
+    position: relative;
+    display: block;
+    width: 70%;
+    height: 70%;
+    margin: 10px auto; }
+    .shade #picture .play {
+      display: none; }
+    .shade #picture #pictureELE {
+      width: 100%;
+      max-width: 128em;
+      cursor: pointer; }
+    .shade #picture .exitBtn {
+      display: none; }
+    .shade #picture .exifInfo {
+      display: none;
+      position: relative;
+      bottom: 0;
+      left: 0;
+      z-index: 20001;
+      display: block;
+      width: 100%;
+      height: 3.125em;
+      line-height: 3.125em;
+      background-color: rgba(255, 255, 255, 0.65); }
+      .shade #picture .exifInfo p {
+        color: #000;
+        text-align: center; }
+  .shade .prevSlide {
+    display: block;
+    position: absolute;
+    top: 30%;
+    left: 3.125em;
+    z-index: 20001; }
+  .shade .prevSlide a {
+    color: #fff;
+    border: 1px solid #fff;
+    padding: 4px 15px;
+    transition: background-color .5s;
+    text-decoration: none;
+    font-size: 1.4em; }
+  .shade .prevSlide a:hover {
+    background-color: rgba(0, 0, 0, 0.3); }
+  .shade .nextSlide {
+    display: block;
+    position: absolute;
+    top: 30%;
+    right: 3.125em;
+    z-index: 20001; }
+  .shade .nextSlide a {
+    color: #fff;
+    border: 1px solid #fff;
+    padding: 4px 15px;
+    transition: background-color .5s;
+    text-decoration: none;
+    font-size: 1.4em; }
+  .shade .nextSlide a:hover {
+    background-color: rgba(0, 0, 0, 0.3); }
+  .shade .prevSlide a:visited, .shade .nextSlide a:visited {
+    color: #fff; }
+
 /*@import "partials/_slideshow.scss";*/
 .masthead {
   background: #fff; }

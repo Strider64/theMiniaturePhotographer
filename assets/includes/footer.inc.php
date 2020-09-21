@@ -15,7 +15,10 @@
 </script>
 <script src='https://www.google.com/recaptcha/api.js' async defer></script>
 <?php } ?>
-<!--<script src="assets/js/slideshow.js"></script>-->
+<?php if ($pageName === 'photo') { ?>
+<script src="assets/js/myLightBox.js"></script>
+<?php } ?>
+<!--<script src = "assets/js/slideshow.js"></script>-->
 </body>
 
 </html>
