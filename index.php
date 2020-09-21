@@ -131,7 +131,12 @@ if ($upload && $upload === 'upload') {
             $saveStatus = myFunction($data, $thumb, 'assets/thumbnails/', 'thumb-', 600, 400);
             if ($saveStatus) {
                 //echo "<pre>" . print_r($data, 1) . "</pre>";
-                $cms->create($data);
+                $success = $cms->create($data);
+                if ($success) {
+                    header('Location: index.php');
+                    exit();
+                }
+                
             }
         }
     } // END OF $_FILES
@@ -169,7 +174,11 @@ include_once 'assets/includes/header.inc.php';
             echo '<div class="card-content">';
             echo '<h2>' . $entry->heading . '<span class="subheading">by ' . $entry->author . ' on ' . $entry->date_added . '</span></h2>';
             $content = $linkify->linkify($entry->content);
-            echo '<p>' . nl2br($cms->getIntro($content, 1500, $entry->id)) . '</p>';
+            if (strlen($content) > 1500) {
+                echo '<p>' . nl2br($cms->getIntro($content, 1500, $entry->id)) . '</p>';
+            } else {
+                echo '<p>' . nl2br($content) . '</p>';
+            }
             echo '</div><!-- .card-content -->';
 
             if (isset($_SESSION['id']) && ($_SESSION['id'] === $entry->user_id || $status === 'sysop')) {

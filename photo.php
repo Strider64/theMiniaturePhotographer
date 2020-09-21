@@ -18,7 +18,9 @@ $monthly->phpDate();
 $calendar = $monthly->generateCalendar($basename);
 
 $username = (isset($_SESSION['id'])) ? $login->username($_SESSION['id']) : null;
-
+if ($username) {
+    $status = $login->checkSecurity($_SESSION['id']);
+}
 define('IMAGE_WIDTH', 2048);
 define('IMAGE_HEIGHT', 1365);
 
@@ -152,6 +154,7 @@ include_once 'assets/includes/header.inc.php';
             </nav>
         </div>
         <?php if ($username) { ?>  
+             <?php if ($status === 'sysop') { ?>
             <form class="photoGallery" action="photo.php" method="post" enctype="multipart/form-data">
                 <fieldset id="mainEntry">
                     <legend>Upload Image</legend>
@@ -167,6 +170,7 @@ include_once 'assets/includes/header.inc.php';
                     <input class="uploadBtn" type="submit" name="submit" value="upload">
                 </fieldset>
             </form>
+             <?php } ?>
             <a class="btn3" href="logout.php?pageLoc=photo.php">Log Off</a>
         <?php } else { ?>
             <div class="login">
