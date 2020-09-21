@@ -328,9 +328,11 @@ Header styles minus menu
   height: 14em;
   background: #e6e6e6; }
 
-img.logo {
-  width: 952px;
-  height: 252px; }
+.site-branding {
+  width: 70%;
+  max-width: 59.50em;
+  height: 70%;
+  max-height: 15.75em; }
 
 @media screen and (min-width: 44.44em) {
   .site-title {

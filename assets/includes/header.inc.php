@@ -35,7 +35,12 @@ if (array_key_exists($pageName, $temp)) {
                 <div class="sidebar-switcher">
                     Select layout: <a href="#" class="sidebar-left-toggle"><i class="fas fa-align-left"></i><span class="screen-reader-text">Move sidebar to the left</span></a> <a href="#" class="sidebar-right-toggle"><i class="fas fa-align-right"></i><span class="screen-reader-text">Move sidebar to the right</span></a><a href="#" class="hide-sidebar-toggle"><i class="fas fa-arrow-circle-right"></i><span class="screen-reader-text">Remove sidebar</span></a>
                 </div><!-- .sidebar-switcher -->
-
+                <?php
+                $url = 'index.php';
+                if ($basename === 'index.php') {
+                    echo $pagination->pageLinks($url);
+                }
+                ?>
                 <div class="centered">
 
                     <div class="site-branding">
@@ -43,12 +48,7 @@ if (array_key_exists($pageName, $temp)) {
 
                     </div>
                 </div><!-- .centered -->
-                <?php
-                $url = 'index.php';
-                if ($basename === 'index.php') {
-                    echo $pagination->pageLinks($url);
-                }
-                ?>
+
             </header><!-- .masthead -->
 
         </div>
