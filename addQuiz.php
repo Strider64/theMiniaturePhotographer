@@ -4,6 +4,24 @@ require_once "vendor/autoload.php";
 
 use Miniature\Calendar;
 use Miniature\Database as DB;
+use Miniature\Users as Login;
+
+$login = new Login();
+
+$username = (isset($_SESSION['id'])) ? $login->username($_SESSION['id']) : null;
+
+if (!$username) {
+    header("Location: game.php");
+    exit();
+} 
+
+if ($username) {
+    $status = $login->checkSecurity($_SESSION['id']);
+}
+//echo $username . ' ' . $status . "<br>";
+
+
+
 /*
  * Calendar code
  */

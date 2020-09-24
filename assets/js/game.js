@@ -284,7 +284,7 @@
          * parent container such that the element on which 
          * scrollIntoView() is called is visible to the user
          */
-        d.getElementById('mainGame').scrollIntoView();
+        d.getElementById('topOfGame').scrollIntoView();
 
         startTimer(dSec);
 
