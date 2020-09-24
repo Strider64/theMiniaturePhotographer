@@ -46,7 +46,7 @@ if ($upload && $upload === 'upload') {
             $data['ExposureTime'] = $exif_data['ExposureTime'] . "s";
             $data['Aperture'] = $exif_data['COMPUTED']['ApertureFNumber'];
             $data['ISO'] = "ISO " . $exif_data['ISOSpeedRatings'];
-            (isset($data['FocalLength'])) ? $data['FocalLength'] = $exif_data['FocalLengthIn35mmFilm'] . "mm" : $data['FocalLength'] = null;
+            (isset($exif_data['FocalLengthIn35mmFilm'])) ? $data['FocalLength'] = $exif_data['FocalLengthIn35mmFilm'] . "mm" : $data['FocalLength'] = null;
         }
 
         function imageResize($imageSrc, $imageWidth, $imageHeight, $newImageWidth = IMAGE_WIDTH, $newImageHeight = IMAGE_HEIGHT) {

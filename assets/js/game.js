@@ -311,9 +311,9 @@
 
     /* Success function utilizing FETCH */
     const quizUISuccess = (parsedData) => {
-        var temp = null;
         mainGame.style.display = 'block';
-        gameData = parsedData.sort(() => Math.random() - .5); // randomize questions:     
+        gameData = parsedData;
+        //gameData = parsedData.sort(() => Math.random() - .5); // randomize questions:     
         //gameData = temp.slice(0, 10);
         console.log(gameData, gameData.length);
         totalQuestions = parseInt(gameData.length);

@@ -17,7 +17,7 @@ include_once 'assets/includes/header.inc.php';
 <div class="content">
     <main class="main-area">
         <section class="main">
-<!--            <p class="banner">The Chalkboard Quiz by The Miniature Photographer</p>-->
+
             <div id="quiz">
 
                 <div id="gameTitle">
@@ -61,6 +61,36 @@ include_once 'assets/includes/header.inc.php';
                 </ul>
             </nav>
         </div>
+
+        <table class="styled-table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Points</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Dom</td>
+                    <td>6000</td>
+                </tr>
+                <tr class="active-row">
+                    <td>Melissa</td>
+                    <td>5150</td>
+                </tr>
+                <tr>
+                    <td>Judi</td>
+                    <td>4000</td>
+                </tr>
+                <!-- and so on... -->
+            </tbody>
+        </table>
+
+        <article class="addTriviaInfo">
+            <h2>Add a Photography Trivia Question</h2>
+            <p>I have developed a photography trivia question game that lets people learn photography while having fun. I am sprucing up the game in order to bring even more fun to the game. The winner of after each day will be able to add a photography trivia question to the database table. The question and answers probably will not be posted right away in order for the question to be approved and/or edited. The only prize is getting top honors on a daily top high score listing on this website, plus the knowledge of being top for that day in knowing photography.</p>
+        </article>
+        <a class="addQBtn" href="addQuiz.php" title="Add Photography Trivia Question">Add Question</a>
     </div><!-- .sidebar -->
 </div><!-- .content -->    
 

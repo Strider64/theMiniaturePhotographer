@@ -328,7 +328,8 @@ Header styles minus menu
   height: 14em;
   background: #e6e6e6; }
 
-.site-branding {
+div.site-branding {
+  display: none;
   width: 70%;
   max-width: 59.50em;
   height: 70%;
@@ -340,6 +341,9 @@ Header styles minus menu
 @media screen and (min-width: 50em) {
   .site-title {
     font-size: 3.2em; } }
+@media screen and (min-width: 62.5em) {
+  div.site-branding {
+    display: block; } }
 .site-title a {
   color: #f8eded;
   text-decoration: none; }
@@ -614,7 +618,7 @@ Header styles minus menu
     margin: 0 auto; }
 
   .sidebar {
-    flex: 0 0 38em;
+    flex: 0 0 28em;
     order: 2;
     transition: padding .5s ease, flex .5s ease, color .2s ease-in .3s; }
 
@@ -1530,6 +1534,145 @@ hr.hrStyle {
 #mainGame #nextStyle #next:hover {
   background-color: rgba(85, 85, 85, 0.7);
   color: #fff; }
+
+form#addTriviaQA, form#editTrivia {
+  display: block;
+  width: 100%;
+  max-width: 800px;
+  height: auto;
+  background-color: #f2f2f2;
+  padding: 20px;
+  margin: 0 auto; }
+  form#addTriviaQA fieldset, form#editTrivia fieldset {
+    border: 0.125em solid #4C8FEC;
+    font-size: 1.1em;
+    font-weight: 700;
+    padding: 0.938em;
+    margin-bottom: 0.625em; }
+  form#addTriviaQA legend, form#editTrivia legend {
+    font-size: 1.2em;
+    color: #4C8FEC;
+    padding: 0 0.313em; }
+  form#addTriviaQA input, form#editTrivia input {
+    clear: right;
+    display: block;
+    width: 100%;
+    max-width: 79%;
+    height: 50px;
+    border: none;
+    outline: none;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.2em;
+    color: #4C8FEC;
+    padding: 0.125em 7px;
+    margin: 10px 0; }
+  form#addTriviaQA .select-css, form#editTrivia .select-css {
+    display: block;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.0em;
+    font-weight: 700;
+    text-transform: capitalize;
+    color: #4C8FEC;
+    line-height: 1.3;
+    padding: .6em 1.4em .5em .8em;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    margin: 0.625em 0;
+    border: 1px solid #aaa;
+    box-shadow: 0 1px 0 1px rgba(0, 0, 0, 0.04);
+    border-radius: .5em;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+    background-color: #fff;
+    background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23007CB2%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E"), linear-gradient(to bottom, #ffffff 0%, #e5e5e5 100%);
+    background-repeat: no-repeat, repeat;
+    background-position: right .7em top 50%, 0 0;
+    background-size: .65em auto, 100%; }
+  form#addTriviaQA .select-css .select-css::-ms-expand, form#addTriviaQA form#editTrivia .select-css .select-css::-ms-expand, form#editTrivia .select-css .select-css::-ms-expand, form#editTrivia form#editTrivia .select-css .select-css::-ms-expand {
+    display: none; }
+  form#addTriviaQA .select-css .select-css:hover, form#addTriviaQA form#editTrivia .select-css .select-css:hover, form#editTrivia .select-css .select-css:hover, form#editTrivia form#editTrivia .select-css .select-css:hover {
+    border-color: #888; }
+  form#addTriviaQA .select-css .select-css:focus, form#addTriviaQA form#editTrivia .select-css .select-css:focus, form#editTrivia .select-css .select-css:focus, form#editTrivia form#editTrivia .select-css .select-css:focus {
+    border-color: #aaa;
+    box-shadow: 0 0 1px 3px rgba(59, 153, 252, 0.7);
+    box-shadow: 0 0 0 3px -moz-mac-focusring;
+    color: #222;
+    outline: none; }
+  form#addTriviaQA textarea, form#editTrivia textarea {
+    border: none;
+    outline: none;
+    resize: none;
+    width: 100%;
+    max-width: 100%;
+    height: 25.000em;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #4C8FEC;
+    font-size: 1.2em;
+    line-height: 1.5;
+    padding: 10px;
+    margin-top: 0.125em; }
+  form#addTriviaQA label, form#editTrivia label {
+    clear: left;
+    float: left;
+    display: block;
+    width: 6.250em;
+    height: auto;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.2em;
+    line-height: 1.5;
+    color: #4C8FEC;
+    text-transform: capitalize;
+    padding: 0.125em 0em;
+    margin: 10px 0; }
+  form#addTriviaQA #submitBtn, form#editTrivia #submitBtn {
+    cursor: pointer;
+    clear: both;
+    border: none;
+    outline: none;
+    float: right;
+    display: block;
+    width: 6.500em;
+    height: 2.500em;
+    background-color: #4C8FEC;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.0em;
+    text-align: center;
+    text-transform: capitalize;
+    color: #fff;
+    margin-top: 0.625em;
+    margin-right: 0em; }
+
+.styled-table {
+  border-collapse: collapse;
+  margin: 25px 0;
+  font-size: 0.9em;
+  font-family: sans-serif;
+  min-width: 400px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15); }
+
+.styled-table thead tr {
+  background-color: #009879;
+  color: #ffffff;
+  text-align: left; }
+
+.styled-table th,
+.styled-table td {
+  padding: 12px 15px; }
+
+.styled-table tbody tr {
+  border-bottom: 1px solid #dddddd; }
+
+.styled-table tbody tr:nth-of-type(even) {
+  background-color: #f3f3f3; }
+
+.styled-table tbody tr:last-of-type {
+  border-bottom: 2px solid #009879; }
+
+.styled-table tbody tr.active-row {
+  font-weight: bold;
+  color: #009879; }
 
 article.about {
   display: block;
