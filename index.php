@@ -9,6 +9,7 @@ use Miniature\Pagination;
 use Miniature\ProcessImage as Process;
 use Miniature\Resize;
 use Miniature\Linkify;
+
 ini_set('memory_limit', '256M');
 $linkify = new Linkify();
 $login = new Login;
@@ -22,7 +23,6 @@ $index = 0;
 $current_page = htmlspecialchars($_GET['page'] ?? 1); // Current Page Location:
 $per_page = 3; // Total articles per page
 $total_count = $journal::countAll(); // Totoal articles in database table:
-
 $pagination = new Pagination($current_page, $per_page, $total_count);
 
 /*
@@ -43,7 +43,7 @@ if ($username) {
 
 define('IMAGE_WIDTH', 2048);
 define('IMAGE_HEIGHT', 1365);
-        
+
 $upload = filter_input(INPUT_POST, 'action', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
 if ($upload && $upload === 'upload') {
@@ -79,11 +79,11 @@ if ($upload && $upload === 'upload') {
             return $newImageLayer;
         }
 
-        function myFunction($uploadedFile, $dirPath = "assets/large/", $preEXT = 'img-', $newImageWidth = IMAGE_WIDTH, $newImageHeight = IMAGE_HEIGHT) {
+        function myFunction(&$data, $uploadedFile, $dirPath = "assets/large/", $preEXT = 'img-', $newImageWidth = IMAGE_WIDTH, $newImageHeight = IMAGE_HEIGHT) {
             $sourceProperties = getimagesize($uploadedFile);
             $newFileName = time();
 
-            global $data;
+            //global $data;
 
             $ext = pathinfo($_FILES['file']['name'], PATHINFO_EXTENSION);
             $imageType = $sourceProperties[2];
@@ -126,12 +126,17 @@ if ($upload && $upload === 'upload') {
             return true;
         }
 
-        $result = myFunction($large);
+        $result = myFunction($data, $large);
         if ($result) {
-            $saveStatus = myFunction($thumb, 'assets/thumbnails/', 'thumb-', 600, 400);
+            $saveStatus = myFunction($data, $thumb, 'assets/thumbnails/', 'thumb-', 600, 400);
             if ($saveStatus) {
                 //echo "<pre>" . print_r($data, 1) . "</pre>";
-                $cms->create($data);
+                $success = $cms->create($data);
+                if ($success) {
+                    header('Location: index.php');
+                    exit();
+                }
+                
             }
         }
     } // END OF $_FILES
@@ -169,7 +174,11 @@ include_once 'assets/includes/header.inc.php';
             echo '<div class="card-content">';
             echo '<h2>' . $entry->heading . '<span class="subheading">by ' . $entry->author . ' on ' . $entry->date_added . '</span></h2>';
             $content = $linkify->linkify($entry->content);
-            echo '<p>' . nl2br($cms->getIntro($content, 1500, $entry->id)) . '</p>';
+            if (strlen($content) > 1500) {
+                echo '<p>' . nl2br($cms->getIntro($content, 1500, $entry->id)) . '</p>';
+            } else {
+                echo '<p>' . nl2br($content) . '</p>';
+            }
             echo '</div><!-- .card-content -->';
 
             if (isset($_SESSION['id']) && ($_SESSION['id'] === $entry->user_id || $status === 'sysop')) {
@@ -182,7 +191,6 @@ include_once 'assets/includes/header.inc.php';
         }
         ?>
         </section><!-- .cards -->
-
     </main>
 
     <div class="sidebar">
@@ -198,25 +206,25 @@ include_once 'assets/includes/header.inc.php';
             </nav>
         </div>
 
-<?php if ($username) { ?>  
+        <?php if ($username) { ?>  
+            <?php if ($status === 'sysop') { ?>
+                <form class="cms-editor" action="index.php" method="post" enctype="multipart/form-data">
+                    <fieldset id="mainEntry">
+                        <legend>Content Management System Form</legend>
+                        <input type="hidden" name="user_id" value="<?= $_SESSION['id']; ?>">
+                        <input type="hidden" name="action" value="upload">
+                        <input class="image-upload" type="file" name="file">
 
-            <form class="cms-editor" action="index.php" method="post" enctype="multipart/form-data">
-                <fieldset id="mainEntry">
-                    <legend>Content Management System Form</legend>
-                    <input type="hidden" name="user_id" value="<?= $_SESSION['id']; ?>">
-                    <input type="hidden" name="action" value="upload">
-                    <input class="image-upload" type="file" name="file">
-
-                    <label class="heading" for="heading">Heading</label>
-                    <input class="heading" type="text" name="heading" value="" tabindex="1" required autofocus>
-                    <label class="text" for="content">Content</label>
-                    <textarea id="content" name="content" tabindex="2"></textarea>
-                    <input class="menuExit" type="submit" name="submit" value="enter">
-                </fieldset>
-            </form>
-
+                        <label class="heading" for="heading">Heading</label>
+                        <input class="heading" type="text" name="heading" value="" tabindex="1" required autofocus>
+                        <label class="text" for="content">Content</label>
+                        <textarea id="content" name="content" tabindex="2"></textarea>
+                        <input class="menuExit" type="submit" name="submit" value="enter">
+                    </fieldset>
+                </form>
+            <?php } ?>
             <a class="btn3" href="logout.php">Log Off</a>
-<?php } else { ?>
+        <?php } else { ?>
             <div class="login">
                 <h1>Login to Web App</h1>
                 <form method="post" action="login.php">
@@ -227,7 +235,7 @@ include_once 'assets/includes/header.inc.php';
             </div>
             <a class="btn1" href="register.php">register?</a>
 
-<?php } ?>
+        <?php } ?>
     </div><!-- .sidebar -->
 </div><!-- .content -->
 
