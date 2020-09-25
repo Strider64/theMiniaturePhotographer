@@ -59,17 +59,6 @@ include_once 'assets/includes/header.inc.php';
     </main>
 
     <div class="sidebar">
-        <div class="squish-container">
-            <h3>Social Media</h3>
-            <nav class="social-media">
-                <ul>
-                    <li><a href="https://www.facebook.com/Pepster64/"><i class="fab fa-facebook-square"></i>Facebook</a></li>
-                    <li><a href="https://twitter.com/Strider64"><i class="fab fa-twitter"></i>Twitter</a></li>
-                    <li><a href="https://www.linkedin.com/in/johnpepp/"><i class="fab fa-linkedin-in"></i>LinkedIn</a></li>
-                    <li><a href="https://www.flickr.com/photos/pepster/sets/72157704634851262/"><i class="fab fa-flickr"></i>Flickr</a></li>
-                </ul>
-            </nav>
-        </div>
 
         <table class="styled-table">
             <thead>

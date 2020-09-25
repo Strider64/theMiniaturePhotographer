@@ -20,11 +20,11 @@ $pdo = new PDO('mysql:host=' . DATABASE_HOST . ';dbname=' . DATABASE_NAME . ';ch
 
 function readData($category, $pdo) {
 
-    $query = "SELECT id, question, answer1, answer2, answer3, answer4, category FROM trivia_questions WHERE category=:category";
+    $query = "SELECT id, user_id, hidden, question, answer1, answer2, answer3, answer4, category FROM trivia_questions WHERE hidden=:hidden AND category=:category";
     $stmt = $pdo->prepare($query);
 
 
-    $stmt->execute([':category' => $category]);
+    $stmt->execute([':hidden' => 'no', ':category' => 'photography']);
 
     $result = $stmt->fetchALL(PDO::FETCH_ASSOC);
 

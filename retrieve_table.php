@@ -18,11 +18,11 @@ if (!$username) {
 $conn = DB::getInstance();
 $pdo = $conn->getConnection();
 
-function retrieveData($cat, $pdo) {
+function retrieveData($pdo) {
 
-    $query = "SELECT * FROM trivia_questions WHERE category=:category ORDER BY id ASC";
+    $query = "SELECT * FROM trivia_questions ORDER BY id ASC";
     $stmt = $pdo->prepare($query);
-    $stmt->execute([':category' => $cat]);
+    $stmt->execute();
 
     $data = $stmt->fetchAll(\PDO::FETCH_OBJ);
     return $data;
@@ -32,10 +32,10 @@ function retrieveData($cat, $pdo) {
 header('Content-type: application/json');
 
 
-$category = htmlspecialchars($_GET['category']);
 
 
-$data = retrieveData($category, $pdo);
+
+$data = retrieveData($pdo);
 output($data);
 
 function errorOutput($output, $code = 500) {

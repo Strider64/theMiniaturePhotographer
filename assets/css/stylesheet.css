@@ -363,14 +363,15 @@ div.site-branding {
     flex: 0 1 auto;
     flex-wrap: wrap;
     justify-content: space-between;
-    background-color: #0365ca;
+    background-color: black;
     padding: 2px 4px; }
     .calendar-box .monthlyHeader .prev-left, .calendar-box .monthlyHeader .displayMonth, .calendar-box .monthlyHeader .next-right {
       display: flex;
       justify-content: center;
-      font-size: 1.2em;
+      font-size: 1.0em;
+      font-weight: normal;
       text-decoration: none;
-      color: #FFCB0A;
+      color: #fff;
       margin: 1px; }
     .calendar-box .monthlyHeader .prev-left {
       padding-top: 4px;
@@ -405,17 +406,17 @@ div.site-branding {
       color: #fff;
       margin: 1px; }
     .calendar-box .displayCurrentMonth .prev-date {
-      background-color: #4fa5fd;
-      color: #bbb; }
+      background-color: #ccc;
+      color: gray; }
     .calendar-box .displayCurrentMonth .date {
-      color: #FFCB0A;
-      background-color: #0365ca; }
+      color: #fff;
+      background-color: #262626; }
     .calendar-box .displayCurrentMonth .today {
       background-color: green; }
     .calendar-box .displayCurrentMonth .holiday {
-      background-color: red; }
+      background-color: #d41aa8; }
     .calendar-box .displayCurrentMonth .entryBold {
-      color: coral;
+      color: #ec68cd;
       font-weight: bolder; }
 
 /* Base styles */
@@ -1685,6 +1686,7 @@ form#addTriviaQA, form#editTrivia {
     margin-right: 0em; }
 
 .styled-table {
+  display: none;
   border-collapse: collapse;
   margin: 25px 0;
   font-size: 0.9em;

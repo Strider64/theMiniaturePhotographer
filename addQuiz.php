@@ -40,7 +40,7 @@ function create($data, $pdo) {
     $stmt = $pdo->prepare($query);
     $result = $stmt->execute([
         ':user_id' => 1,
-        ':hidden' => 'no',
+        ':hidden' => 'yes',
         ':question' => $data['question'],
         ':answer1' => $data['answer1'],
         ':answer2' => $data['answer2'],
@@ -62,7 +62,7 @@ if (isset($submit) && $submit === 'submit') {
     $data['answer3'] = filter_input(INPUT_POST, 'answer3', FILTER_SANITIZE_SPECIAL_CHARS);
     $data['answer4'] = filter_input(INPUT_POST, 'answer4', FILTER_SANITIZE_SPECIAL_CHARS);
     $data['correct'] = filter_input(INPUT_POST, 'correct', FILTER_SANITIZE_SPECIAL_CHARS);
-    $data['category'] = filter_input(INPUT_POST, 'category', FILTER_SANITIZE_SPECIAL_CHARS);
+    $data['category'] = 'photography';
     $result = create($data, $pdo);
     if ($result) {
         header("Location: game.php");
@@ -80,11 +80,6 @@ include_once 'assets/includes/header.inc.php';
                     <legend id="legend">Add Trivia Question(s)</legend>
                     <input id="id" type="hidden" name="id" value="0">
                     <input type="hidden" name="user_id" value="">
-                    <select class="select-css" name="category" tabindex="1">
-                        <option value="photography">Photography</option>
-                        <option value="movie">Movie</option>
-                        <option value="space">Space</option>
-                    </select>
                     <textarea id="addQuestion" name="question" tabindex="2" placeholder="Add question here..." autofocus></textarea>
                     <label for="addAnswer1">Answer 1</label>
                     <input id="addAnswer1" type="text" name="answer1" value="" tabindex="3">
