@@ -66,7 +66,7 @@ const myRed = myColor("rgba(84, 0, 30, 0.70)"); /* Red with 70% transparency */
 const insertData = (data) => {
      
     record = data;
-    console.log('record', record);
+    //console.log('record', record);
     position.textContent = record.id;
 
     user_id.value = record.user_id;

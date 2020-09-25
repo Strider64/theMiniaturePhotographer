@@ -279,13 +279,6 @@
     /* Populate Question, Create Answer Buttons */
     const createQuiz = (gameData) => {
 
-        /*
-         * The Element interface's scrollIntoView() method scrolls the element's
-         * parent container such that the element on which 
-         * scrollIntoView() is called is visible to the user
-         */
-        d.getElementById('topOfGame').scrollIntoView();
-
         startTimer(dSec);
 
         question.textContent = gameData.question;
@@ -298,13 +291,17 @@
             /*
              * Don't Show Answers that have a Blank Field
              */
+
+            var gameButton = buttonContainer.appendChild(d.createElement('button'));
+            gameButton.id = 'answer' + (index + 1);
+            gameButton.className = 'answerButton';
+            gameButton.setAttribute('data-correct', (index + 1));
+            gameButton.addEventListener('click', clickHandler, false);
             if (value !== "") {
-                var gameButton = buttonContainer.appendChild(d.createElement('button'));
-                gameButton.id = 'answer' + (index + 1);
-                gameButton.className = 'answerButton';
-                gameButton.setAttribute('data-correct', (index + 1));
-                gameButton.addEventListener('click', clickHandler, false);
                 gameButton.appendChild(d.createTextNode(value));
+            } else {
+                gameButton.appendChild(d.createTextNode(" "));
+                gameButton.style.pointerEvents = "none";
             }
         });
     };
@@ -368,7 +365,7 @@
      * Start Game by Category
      */
     const selectCat = function (category) {
-       
+
         const requestUrl = `${quizUrl}category=${category}`;
 
         createRequest(requestUrl, quizUISuccess, quizUIError);
@@ -410,7 +407,7 @@
     d.querySelector('.gameTitle').textContent = "Photography";
     d.querySelector('#quiz').style.display = 'block';
 
-selectCat('photography');
+    selectCat('photography');
 
 //startBtn.addEventListener('click', startgame, false);
 })();
