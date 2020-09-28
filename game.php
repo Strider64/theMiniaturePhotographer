@@ -26,7 +26,29 @@ include_once 'assets/includes/header.inc.php';
 <div id="topOfGame" class="content">
     <main class="main-area">
         <section class="main">
-
+            <table id="scoreboard" class="styled-table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Points</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Dom</td>
+                        <td>6000</td>
+                    </tr>
+                    <tr class="active-row">
+                        <td>Melissa</td>
+                        <td>5150</td>
+                    </tr>
+                    <tr>
+                        <td>Judi</td>
+                        <td>4000</td>
+                    </tr>
+                    <!-- and so on... -->
+                </tbody>
+            </table>
             <div id="quiz">
 
                 <div id="gameTitle">
@@ -35,7 +57,7 @@ include_once 'assets/includes/header.inc.php';
                 <div class="triviaContainer" data-key="<?php echo $_SESSION['api_key']; ?>" data-records=" ">             
                     <div id="mainGame">
                         <div id="headerStyle" data-user="">
-                            <h2>Time Left: <span id="clock"></span></h2>
+                            <h2>Time Left: <span id="clock"></span><span id="currentQuestion"></span><span id="totalQuestions"></span></h2>
                         </div>
 
                         <div id="triviaSection" data-correct="">
@@ -60,29 +82,7 @@ include_once 'assets/includes/header.inc.php';
 
     <div class="sidebar">
 
-        <table class="styled-table">
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Points</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Dom</td>
-                    <td>6000</td>
-                </tr>
-                <tr class="active-row">
-                    <td>Melissa</td>
-                    <td>5150</td>
-                </tr>
-                <tr>
-                    <td>Judi</td>
-                    <td>4000</td>
-                </tr>
-                <!-- and so on... -->
-            </tbody>
-        </table>
+
 
         <article class="addTriviaInfo">
             <h2>Add a Photography Trivia Question</h2>

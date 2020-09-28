@@ -5,15 +5,17 @@ require_once "vendor/autoload.php";
 use Miniature\Calendar;
 use Miniature\Database as DB;
 use Miniature\Users as Login;
+use Miniature\Trivia;
 
 $login = new Login();
+$trivia = new Trivia();
 
 $username = (isset($_SESSION['id'])) ? $login->username($_SESSION['id']) : null;
 
 if (!$username) {
     header("Location: game.php");
     exit();
-} 
+}
 
 if ($username) {
     $status = $login->checkSecurity($_SESSION['id']);
@@ -57,14 +59,15 @@ $data = [];
 $submit = filter_input(INPUT_POST, 'submit', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 if (isset($submit) && $submit === 'submit') {
     $data['question'] = filter_input(INPUT_POST, 'question', FILTER_DEFAULT);
-    $data['answer1'] = filter_input(INPUT_POST, 'answer1', FILTER_SANITIZE_SPECIAL_CHARS);
-    $data['answer2'] = filter_input(INPUT_POST, 'answer2', FILTER_SANITIZE_SPECIAL_CHARS);
-    $data['answer3'] = filter_input(INPUT_POST, 'answer3', FILTER_SANITIZE_SPECIAL_CHARS);
-    $data['answer4'] = filter_input(INPUT_POST, 'answer4', FILTER_SANITIZE_SPECIAL_CHARS);
-    $data['correct'] = filter_input(INPUT_POST, 'correct', FILTER_SANITIZE_SPECIAL_CHARS);
+    $data['answer1'] = filter_input(INPUT_POST, 'answer1', FILTER_DEFAULT);
+    $data['answer2'] = filter_input(INPUT_POST, 'answer2', FILTER_DEFAULT);
+    $data['answer3'] = filter_input(INPUT_POST, 'answer3', FILTER_DEFAULT);
+    $data['answer4'] = filter_input(INPUT_POST, 'answer4', FILTER_DEFAULT);
+    $data['correct'] = filter_input(INPUT_POST, 'correct', FILTER_SANITIZE_NUMBER_INT);
     $data['category'] = 'photography';
     $result = create($data, $pdo);
     if ($result) {
+        $trivia->resetPlaydate();
         header("Location: game.php");
         exit;
     }

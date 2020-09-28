@@ -1,8 +1,8 @@
 /*
- *  The Chalkboard Quiz 5.50 using FETCH/JSON
+ *  The Chalkboard Quiz 5.60 using FETCH/JSON
  *  by John Pepp
  *  Started: January 14, 2020
- *  Revised: May 17, 2020 @ 9:00 AM
+ *  Revised: September 27, 2020 @ 10:00pm
  */
 
 'use strict';
@@ -79,7 +79,12 @@
         var seconds = dSec;
         const userAnswer = 5, correct = 1;
         const newClock = d.querySelector('#clock');
-
+        
+        const currentQuestion = d.querySelector('#currentQuestion');
+        const totalQ = d.querySelector('#totalQuestions');
+        currentQuestion.textContent = (gameIndex + 1) + " out of ";
+        totalQ.textContent = totalQuestions + " questions";
+        
         newClock.style['color'] = 'white';
         newClock.textContent = ((seconds < 10) ? `0${seconds}` : seconds);
         const countdown = () => {
@@ -249,20 +254,27 @@
         }
     };
 
-    /* Reset the Game */
-    const resetGame = () => {
-        removeAnswers();
-        stopTimer();
-        score = 0;
-        total = 0;
-        answeredRight = 0;
-        answeredWrong = 0;
-        gameIndex = 0;
-        gameData = null;
-        scoreText.textContent = 'Score 0 Points';
-        percent.textContent = '100';
-    };
+//    /* Reset the Game */
+//    const resetGame = () => {
+//        removeAnswers();
+//        stopTimer();
+//        score = 0;
+//        total = 0;
+//        answeredRight = 0;
+//        answeredWrong = 0;
+//        gameIndex = 0;
+//        gameData = null;
+//        scoreText.textContent = 'Score 0 Points';
+//        percent.textContent = '100';
+//    };
 
+    const scoreboard = () => {
+        const hideGame = d.querySelector('#quiz');
+        hideGame.style.display = "none";
+        d.querySelector('#scoreboard').style.display = "table";
+        
+        question.textContent = 'Game Over';
+    }
     /* Remove Question & Answers */
     const removeQuiz = () => {
         removeAnswers(); // Call removeAnswers FCN:
@@ -272,7 +284,7 @@
         if (gameIndex < totalQuestions) {
             createQuiz(gameData[gameIndex]); // Recreate the Quiz Display:
         } else {
-            question.textContent = 'Game Over';
+            scoreboard();
         }
     };
 
@@ -309,8 +321,8 @@
     /* Success function utilizing FETCH */
     const quizUISuccess = (parsedData) => {
         mainGame.style.display = 'block';
-        gameData = parsedData;
-        //gameData = parsedData.sort(() => Math.random() - .5); // randomize questions:     
+        //gameData = parsedData;
+        gameData = parsedData.sort(() => Math.random() - .5); // randomize questions:     
         //gameData = temp.slice(0, 10);
         console.log(gameData, gameData.length);
         totalQuestions = parseInt(gameData.length);

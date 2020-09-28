@@ -1439,9 +1439,13 @@ form#gameCat {
   font-size: 1.4rem;
   line-height: 1.5;
   color: #fff; }
-
-#mainGame #headerStyle h2 span {
-  font-size: 1.6em; }
+  #mainGame #headerStyle h2 #clock {
+    font-size: 1.6em; }
+  #mainGame #headerStyle h2 #currentQuestion {
+    font-size: 1.4em;
+    margin-left: 11.250rem; }
+  #mainGame #headerStyle h2 #totalQuestions {
+    font-size: 1.4em; }
 
 #mainGame #triviaSection {
   margin: 0px; }
@@ -1705,8 +1709,13 @@ form#addTriviaQA, form#editTrivia {
     margin-top: 0.625em;
     margin-right: 0em; }
 
-.styled-table {
+#scoreboard {
   display: none;
+  position: absolute;
+  top: 120px;
+  left: 220px; }
+
+.styled-table {
   border-collapse: collapse;
   margin: 25px 0;
   font-size: 0.9em;
@@ -1727,14 +1736,17 @@ form#addTriviaQA, form#editTrivia {
   border-bottom: 1px solid #dddddd; }
 
 .styled-table tbody tr:nth-of-type(even) {
-  background-color: #f3f3f3; }
+  background-color: silver; }
+
+.styled-table tbody tr:nth-of-type(odd) {
+  background-color: #fff; }
 
 .styled-table tbody tr:last-of-type {
   border-bottom: 2px solid #009879; }
 
 .styled-table tbody tr.active-row {
   font-weight: bold;
-  color: #009879; }
+  color: #00b28d; }
 
 article.about {
   display: block;
