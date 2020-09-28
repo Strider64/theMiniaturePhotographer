@@ -19,6 +19,7 @@ $username = (isset($_SESSION['id'])) ? $login->username($_SESSION['id']) : null;
 
 if ($username) {
     $status = $login->checkSecurity($_SESSION['id']);
+    $displayMessage = "Welcome, " . $username . "!<br>";
 }
 
 include_once 'assets/includes/header.inc.php';
@@ -26,34 +27,42 @@ include_once 'assets/includes/header.inc.php';
 <div id="topOfGame" class="content">
     <main class="main-area">
         <section class="main">
-            <table id="scoreboard" class="styled-table">
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Points</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Dom</td>
-                        <td>6000</td>
-                    </tr>
-                    <tr class="active-row">
-                        <td>Melissa</td>
-                        <td>5150</td>
-                    </tr>
-                    <tr>
-                        <td>Judi</td>
-                        <td>4000</td>
-                    </tr>
-                    <!-- and so on... -->
-                </tbody>
-            </table>
+            <div class="displayStatus">
+                <h4 class="displayMessage" data-username="<?= ($username ?? 'Guest') ?>"><?= ($displayMessage ?? 'You are playing as a Guest!'); ?></h4>
+            </div>
+            <div id="scoreboard" class="finalResults">
+                <table class="styled-table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Points</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Dom</td>
+                            <td>6000</td>
+                        </tr>
+                        <tr class="active-row">
+                            <td>Melissa</td>
+                            <td>5150</td>
+                        </tr>
+                        <tr>
+                            <td>Judi</td>
+                            <td>4000</td>
+                        </tr>
+                        <!-- and so on... -->
+                    </tbody>
+                </table>
+                <div id="totals">
+                    <H2><span class="username"></span>'s Stats</H2>
+                    <p>Total Score <span class="totalScore"></span> Points</p>
+                    <p>Total Answered Right was <span class="answeredRight"></span> out of <span class="totalQuestions"></span> questions</p>
+                </div>
+            </div>
             <div id="quiz">
 
-                <div id="gameTitle">
-                    <h2 class="gameTitle">Trivia Game</h2>
-                </div>
+
                 <div class="triviaContainer" data-key="<?php echo $_SESSION['api_key']; ?>" data-records=" ">             
                     <div id="mainGame">
                         <div id="headerStyle" data-user="">

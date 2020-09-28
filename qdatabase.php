@@ -4,7 +4,7 @@ $todays_data = new \DateTime("now", new \DateTimeZone("America/Detroit"));
 
 $day_of_week = $todays_data->format('N');
 
-$max_questions = 2;
+$max_questions = 10;
 
 /*
  * Database Connection 

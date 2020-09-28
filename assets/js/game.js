@@ -64,13 +64,18 @@
             answeredWrong = 0,
             totalQuestions = 0,
             choose = d.querySelector('#selectCat'),
-            failedLoad = false;
+            failedLoad = false,
+            username = d.querySelector('.displayMessage').getAttribute('data-username'),
+            hs_table = {},
+            saveRecord = null;
+
+
 
     var responseAns = {};
 
     const buttons = d.querySelectorAll(".answerButton");
     const mainGame = d.querySelector('#mainGame');
-
+    next.style.display = "none";
 
     /*
      * Start and Stop Functions for Countdown Timer For Triva Game
@@ -79,12 +84,12 @@
         var seconds = dSec;
         const userAnswer = 5, correct = 1;
         const newClock = d.querySelector('#clock');
-        
+
         const currentQuestion = d.querySelector('#currentQuestion');
         const totalQ = d.querySelector('#totalQuestions');
         currentQuestion.textContent = (gameIndex + 1) + " out of ";
         totalQ.textContent = totalQuestions + " questions";
-        
+
         newClock.style['color'] = 'white';
         newClock.textContent = ((seconds < 10) ? `0${seconds}` : seconds);
         const countdown = () => {
@@ -97,6 +102,10 @@
                 highlightFCN(userAnswer, correct);
                 calcPercent(answeredRight, total);
                 disableListeners();
+                if ((gameIndex + 1) === totalQuestions) {
+                    next.textContent = 'results';
+                }
+                next.style.display = "block";
                 next.addEventListener('click', removeQuiz, false);
             } else {
                 newClock.textContent = ((seconds < 10) ? `0${seconds}` : seconds);
@@ -198,6 +207,7 @@
         highlightFCN(userAnswer, correct);
 
         disableListeners();
+        next.style.display = "block";
         next.addEventListener('click', removeQuiz, false);
     };
 
@@ -242,6 +252,9 @@
         responseAns.id = parseInt(gameData[gameIndex].id); // { id: integer } 
         const checkUrl = "check.php";
         stopTimer();
+        if ((gameIndex + 1) === totalQuestions) {
+            next.textContent = 'results';
+        }
         checkRequest(checkUrl, checkUISuccess, checkUIError);
         d.querySelector('#headerStyle').setAttribute('data-user', userAnswer);
     };
@@ -254,36 +267,77 @@
         }
     };
 
-//    /* Reset the Game */
-//    const resetGame = () => {
-//        removeAnswers();
-//        stopTimer();
-//        score = 0;
-//        total = 0;
-//        answeredRight = 0;
-//        answeredWrong = 0;
-//        gameIndex = 0;
-//        gameData = null;
-//        scoreText.textContent = 'Score 0 Points';
-//        percent.textContent = '100';
-//    };
+    /* Success function utilizing FETCH */
+    const saveHSTableSuccess = function (info) {
+        console.log(info);
+    };
+
+    /* If Database Table fails to update data in mysql table */
+    const saveHSTableUIError = function (error) {
+        console.log("Database Table did not load", error);
+    };
+
+    const handleSaveErrors = function (response) {
+        if (!response.ok) {
+            throw (response.status + ' : ' + response.statusText);
+        }
+        return response.json();
+    };
+
+    /* create FETCH request */
+    const saveHSTableRequest = (saveUrl, succeed, fail) => {
+        fetch(saveUrl, {
+            method: 'POST', // or 'PUT'
+            body: JSON.stringify(hs_table)
+        })
+                .then((response) => handleSaveErrors(response))
+                .then((data) => succeed(data))
+                .catch((error) => fail(error));
+    };
+
+    var serializeArray = function (hs_table) {
+
+        var serialized = {
+            player: hs_table.player,
+            score: hs_table.score,
+            correct: hs_table.correct,
+            totalQuestions: hs_table.totalQuestions
+        };
+        
+        return serialized;
+    }
 
     const scoreboard = () => {
+        var totalScore = d.querySelector('.totalScore');
+
         const hideGame = d.querySelector('#quiz');
         hideGame.style.display = "none";
         d.querySelector('#scoreboard').style.display = "table";
-        
+        totalScore.textContent = score;
+        d.querySelector('.username').textContent = username;
+        d.querySelector('.answeredRight').textContent = answeredRight;
+        d.querySelector('.totalQuestions').textContent = totalQuestions;
+        hs_table.player = username;
+        hs_table.score = score;
+        hs_table.correct = answeredRight;
+        hs_table.totalQuestions = totalQuestions;
+        //saveRecord = serializeArray(hs_table)
+        console.log('hs_table', hs_table);
+        //console.log('saveRecord', saveRecord);
+        saveHSTableRequest('hs_table.php', saveHSTableSuccess, saveHSTableUIError);
         question.textContent = 'Game Over';
     }
     /* Remove Question & Answers */
     const removeQuiz = () => {
         removeAnswers(); // Call removeAnswers FCN:
+        next.style.display = "none";
         next.removeEventListener('click', removeQuiz, false);
         gameIndex++;
 
         if (gameIndex < totalQuestions) {
             createQuiz(gameData[gameIndex]); // Recreate the Quiz Display:
         } else {
+
             scoreboard();
         }
     };
@@ -391,32 +445,8 @@
         return s.charAt(0).toUpperCase() + s.slice(1);
     };
 
-//    const selection = (e) => {
-//        e.preventDefault(); // Prevent the select HTML tag from firing:
-//        var category = e.target.value; // Grab the user's selection:
-//        d.querySelector('.gameTitle').textContent = `${capitalize(category)} Trivia`; // Assign the h2 HTML tag the title of the category:
-//        d.querySelector('.triviaContainer').style.display = "block"; // Turn on the selection category (I don't think it's really need?):
-//        resetGame(); // reset the game
-//        selectCat(category); // call the select function with the category that was selected:
-//        console.log(e.target.value); // console debugging tool: 
-//    };
-//
-//    choose.addEventListener('change', selection, false);
-
     d.querySelector('.main').scrollIntoView();
 
-//var startBtn = d.querySelector('#startBtn');
-
-//    const startgame = () => {
-//        d.querySelector('.gameTitle').textContent = "Photography";
-//        d.querySelector('#quiz').style.display = 'block';
-//        selectCat('photography');
-//    };
-
-//    startgame();
-
-
-    d.querySelector('.gameTitle').textContent = "Photography";
     d.querySelector('#quiz').style.display = 'block';
 
     selectCat('photography');
