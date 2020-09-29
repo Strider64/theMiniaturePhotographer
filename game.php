@@ -31,29 +31,6 @@ include_once 'assets/includes/header.inc.php';
                 <h4 class="displayMessage" data-username="<?= ($username ?? 'Guest') ?>"><?= ($displayMessage ?? 'You are playing as a Guest!'); ?></h4>
             </div>
             <div id="scoreboard" class="finalResults">
-                <table class="styled-table">
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Points</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Dom</td>
-                            <td>6000</td>
-                        </tr>
-                        <tr class="active-row">
-                            <td>Melissa</td>
-                            <td>5150</td>
-                        </tr>
-                        <tr>
-                            <td>Judi</td>
-                            <td>4000</td>
-                        </tr>
-                        <!-- and so on... -->
-                    </tbody>
-                </table>
                 <div id="totals">
                     <H2><span class="username"></span>'s Stats</H2>
                     <p>Total Score <span class="totalScore"></span> Points</p>
@@ -95,26 +72,40 @@ include_once 'assets/includes/header.inc.php';
 
         <article class="addTriviaInfo">
             <h2>Add a Photography Trivia Question</h2>
+            <table class="styled-table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Points</th>
+                    </tr>
+                </thead>
+                <tbody class="anchor">
+
+                </tbody>
+            </table>
+
             <p>I have developed a photography trivia question game that lets people learn photography while having fun. I am sprucing up the game in order to bring even more fun to the game. The winner of after each day will be able to add a photography trivia question to the database table. The question and answers probably will not be posted right away in order for the question to be approved and/or edited. The only prize is getting top honors on a daily top high score listing on this website, plus the knowledge of being top for that day in knowing photography.</p>
         </article>
-        <?php if ($username) { ?>  
-            <?php if (isset($status) && $status === 'sysop') { ?>
-                <a class="qBtn" href="addQuiz.php" title="Add Photography Trivia Question">Add Question</a>
-                <a class="qBtn" href="editQuiz.php" title="Edit Photography Trivia Question">Edit Question</a> 
-                <a class="btn3" href="logout.php?pageLoc=game.php">Log Off</a>
-            <?php } ?>
-        <?php } else { ?>
-            <div class="login">
-                <h1>Login to Web App</h1>
-                <form method="post" action="login.php?pageLoc=game.php">
-                    <input type="text" name="username" value="" placeholder="Username">
-                    <input type="password" name="password" value="" placeholder="Password">
-                    <input type="submit" name="submit" value="Login">
-                </form>                        
-            </div>
-            <a class="btn1" href="register.php">register?</a>
 
-        <?php } ?>
+        <?php
+        if (isset($status) && $status === 'sysop') {
+            echo '<a class="qBtn" href="addQuiz.php" title="Add Photography Trivia Question">Add Question</a>';
+            echo '<a class="qBtn" href="editQuiz.php" title="Edit Photography Trivia Question">Edit Question</a>';
+            echo '<a class="btn3" href="logout.php?pageLoc=game.php">Log Off</a>';
+        } elseif (isset ($status) && $status === 'member') {
+            echo '<a class="btn3" href="logout.php?pageLoc=game.php">Log Off</a>';
+        } else {
+            echo '<div class="login">';
+            echo '<h1>Login to Web App</h1>';
+            echo '<form method="post" action="login.php?pageLoc=game.php">';
+            echo '<input type="text" name="username" value="" placeholder="Username">';
+            echo '<input type="password" name="password" value="" placeholder="Password">';
+            echo'<input type="submit" name="submit" value="Login">';
+            echo '</form>';
+            echo '</div>';
+            echo '<a class="btn1" href="register.php">register?</a>';
+        } // End Security Status if
+        ?>
     </div><!-- .sidebar -->
 </div><!-- .content -->    
 

@@ -2,7 +2,7 @@
  *  The Chalkboard Quiz 5.60 using FETCH/JSON
  *  by John Pepp
  *  Started: January 14, 2020
- *  Revised: September 27, 2020 @ 10:00pm
+ *  Revised: September 28, 2020 @ 10:15pm
  */
 
 'use strict';
@@ -199,7 +199,7 @@
 
     /* Success function utilizing FETCH */
     const checkUISuccess = function (parsedData) {
-        console.log(parsedData);
+        //console.log(parsedData);
         var correct = parseInt(parsedData.correct);
         var userAnswer = parseInt(d.querySelector('#headerStyle').getAttribute('data-user'));
         scoringFcn(userAnswer, correct);
@@ -267,15 +267,31 @@
         }
     };
 
-    /* Success function utilizing FETCH */
-    const saveHSTableSuccess = function (info) {
-        console.log(info);
-    };
+    /* Clear High Score  & remove HS Table */
+    const removeHighScores = () => {
+        let element = d.querySelector('.anchor');
+        while (element.firstChild) {
+            element.removeChild(element.firstChild);
+        }
 
-    /* If Database Table fails to update data in mysql table */
-    const saveHSTableUIError = function (error) {
-        console.log("Database Table did not load", error);
-    };
+    }
+
+    /*
+     * Create and Display High Score Table
+     */
+    const displayHSTable = (info) => {
+        info.forEach((value, index) => {
+            var anchor = d.querySelector('.anchor');
+            var trElement = anchor.appendChild(d.createElement('tr'));
+            if ((index + 1) % 2 == 0) {
+                trElement.className = 'active-row';
+            }
+            var tdPlayer = trElement.appendChild(d.createElement('td'));
+            var tdPoints = trElement.appendChild(d.createElement('td'));
+            tdPlayer.appendChild(d.createTextNode(value.player));
+            tdPoints.appendChild(d.createTextNode(value.score));
+        });
+    }
 
     const handleSaveErrors = function (response) {
         if (!response.ok) {
@@ -283,6 +299,22 @@
         }
         return response.json();
     };
+
+    /* Save User Data to hs_table */
+    const saveHSTableSuccess = function (info) {
+     
+        if (info) {
+            removeHighScores();
+            createHSTable('retrieveHighScore.php', retrieveHSTableUISuccess, retrieveHSTableUIError);
+        }
+
+    };
+
+    /* If Database Table fails to save data in mysql table */
+    const saveHSTableUIError = function (error) {
+        console.log("Database Table did not load", error);
+    };
+
 
     /* create FETCH request */
     const saveHSTableRequest = (saveUrl, succeed, fail) => {
@@ -295,17 +327,34 @@
                 .catch((error) => fail(error));
     };
 
-    var serializeArray = function (hs_table) {
+    /* retrieve User Data from hs_table */
+    const retrieveHSTableUISuccess = function (info) {
+        displayHSTable(info);
 
-        var serialized = {
-            player: hs_table.player,
-            score: hs_table.score,
-            correct: hs_table.correct,
-            totalQuestions: hs_table.totalQuestions
-        };
+    };
+
+    /* If Database Table fails to save data in mysql table */
+    const retrieveHSTableUIError = function (error) {
+        console.log("Database Table did not load", error);
+    };
+
+    /* Create High Score Data using fetch */
+    const createHSTable = (retrieveUrl, succeed, fail) => {
+        var max = 5; // Maximum Records to Be Displayed
+        var maxium = {};
+        maxium.max_limit = max;
         
-        return serialized;
-    }
+        fetch(retrieveUrl, {
+            method: 'POST', // or 'PUT'
+            body: JSON.stringify(maxium)
+        })
+                .then((response) => handleSaveErrors(response))
+                .then((data) => succeed(data))
+                .catch((error) => fail(error));
+    };
+
+    createHSTable('retrieveHighScore.php', retrieveHSTableUISuccess, retrieveHSTableUIError);
+
 
     const scoreboard = () => {
         var totalScore = d.querySelector('.totalScore');
@@ -321,9 +370,6 @@
         hs_table.score = score;
         hs_table.correct = answeredRight;
         hs_table.totalQuestions = totalQuestions;
-        //saveRecord = serializeArray(hs_table)
-        console.log('hs_table', hs_table);
-        //console.log('saveRecord', saveRecord);
         saveHSTableRequest('hs_table.php', saveHSTableSuccess, saveHSTableUIError);
         question.textContent = 'Game Over';
     }
@@ -377,8 +423,6 @@
         mainGame.style.display = 'block';
         //gameData = parsedData;
         gameData = parsedData.sort(() => Math.random() - .5); // randomize questions:     
-        //gameData = temp.slice(0, 10);
-        console.log(gameData, gameData.length);
         totalQuestions = parseInt(gameData.length);
         createQuiz(gameData[gameIndex]);
 
@@ -451,5 +495,4 @@
 
     selectCat('photography');
 
-//startBtn.addEventListener('click', startgame, false);
 })();

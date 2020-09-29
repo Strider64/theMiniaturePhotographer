@@ -22,18 +22,17 @@ header('Content-type: application/json');
 /*
  * The below must be used in order for the json to be decoded properly.
  */
-$data = json_decode(file_get_contents('php://input'), true);
-$data['day_of_year'] = $todays_data->format('z');
+$maxium = json_decode(file_get_contents('php://input'), true);
 
-$query = 'INSERT INTO hs_table( player, score, played, correct, totalQuestions, day_of_year ) VALUES ( :player, :score, NOW(), :correct, :totalQuestions, :day_of_year )';
+
+
+$day_of_year = $todays_data->format('z');
+
+$query = 'SELECT * FROM hs_table ORDER BY score DESC LIMIT :maxium';
 $stmt = $pdo->prepare($query);
-
-$result = $stmt->execute([':player' => $data['player'], ':score' => $data['score'], ':correct' => $data['correct'], ':totalQuestions' => $data['totalQuestions'], ':day_of_year' => $data['day_of_year']]);
-
-if ($result) {
-    
-    output(true);
-}
+$stmt->execute([':maxium' => (int) $maxium['max_limit']]);
+$output = $stmt->fetchAll(PDO::FETCH_OBJ);
+output($output);
 
 /*
  * Throw error if something is wrong
