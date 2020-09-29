@@ -2,7 +2,7 @@
  *  The Chalkboard Quiz 5.60 using FETCH/JSON
  *  by John Pepp
  *  Started: January 14, 2020
- *  Revised: September 28, 2020 @ 10:15pm
+ *  Revised: September 29, 2020 @ 1:30pm
  */
 
 'use strict';
@@ -187,10 +187,8 @@
         total++;
     };
 
-    /*
-     * Throw error response if something is wrong: 
-     */
-    const handleErrors = (response) => {
+    /* Handle General Errors in Fetch */
+    const handleErrors = function (response) {
         if (!response.ok) {
             throw (response.status + ' : ' + response.statusText);
         }
@@ -234,7 +232,7 @@
 
     };
 
-    /* create FETCH request */
+    /* create FETCH request for check answers */
     const checkRequest = function (url, succeed, fail) {
         fetch(url, {
             method: 'POST', // or 'PUT'
@@ -293,13 +291,6 @@
         });
     }
 
-    const handleSaveErrors = function (response) {
-        if (!response.ok) {
-            throw (response.status + ' : ' + response.statusText);
-        }
-        return response.json();
-    };
-
     /* Save User Data to hs_table */
     const saveHSTableSuccess = function (info) {
      
@@ -322,7 +313,7 @@
             method: 'POST', // or 'PUT'
             body: JSON.stringify(hs_table)
         })
-                .then((response) => handleSaveErrors(response))
+                .then((response) => handleErrors(response))
                 .then((data) => succeed(data))
                 .catch((error) => fail(error));
     };
@@ -348,7 +339,7 @@
             method: 'POST', // or 'PUT'
             body: JSON.stringify(maxium)
         })
-                .then((response) => handleSaveErrors(response))
+                .then((response) => handleErrors(response))
                 .then((data) => succeed(data))
                 .catch((error) => fail(error));
     };
@@ -421,8 +412,8 @@
     /* Success function utilizing FETCH */
     const quizUISuccess = (parsedData) => {
         mainGame.style.display = 'block';
-        //gameData = parsedData;
-        gameData = parsedData.sort(() => Math.random() - .5); // randomize questions:     
+        gameData = parsedData;
+        //gameData = parsedData.sort(() => Math.random() - .5); // randomize questions:     
         totalQuestions = parseInt(gameData.length);
         createQuiz(gameData[gameIndex]);
 
@@ -482,12 +473,6 @@
 
     };
 
-
-    const capitalize = (s) => {
-        if (typeof s !== 'string')
-            return '';
-        return s.charAt(0).toUpperCase() + s.slice(1);
-    };
 
     d.querySelector('.main').scrollIntoView();
 

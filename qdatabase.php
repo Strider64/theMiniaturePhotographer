@@ -1,10 +1,6 @@
 <?php
+
 require_once 'assets/config/config.php';
-$todays_data = new \DateTime("now", new \DateTimeZone("America/Detroit"));
-
-$day_of_week = $todays_data->format('N');
-
-$max_questions = 10;
 
 /*
  * Database Connection 
@@ -19,17 +15,46 @@ $db_options = [
 ];
 $pdo = new PDO('mysql:host=' . DATABASE_HOST . ';dbname=' . DATABASE_NAME . ';charset=utf8', DATABASE_USERNAME, DATABASE_PASSWORD, $db_options);
 
+function countAll($pdo) {
+    $stmt = $pdo->prepare("SELECT count(*) FROM trivia_questions WHERE hidden = :hidden");
+    $stmt->execute([':hidden' => 'no']);
+    $count = $stmt->fetchColumn();
+    return $count;
+}
+
+$todays_day = new \DateTime("now", new \DateTimeZone("America/Detroit"));
+
+
+$days = [];
+$max = 10;
+$total = countAll($pdo);
+
+$day_of_week = $todays_day->format('w');
+$max_offset = floor($total/$max) * $max;
+$count = 0;
+
+for ($x=0; $x <= 6; $x++) {
+    $days[$x] = $count * $max;
+    if (($count * $max) < $max_offset) {
+        $count += 1;
+    } else {
+        $count = 0;
+    }
+}
+
+$questionOFFSET = $days[$day_of_week];
+
 /*
  * Read Questions & Answers in from the Database Table Named 'trivia_questions'
  */
 
-function readData($pdo, $day_of_week, $max_questions) {
+function readData($pdo, $max_questions, $newOffset) {
 
-    $query = "SELECT * FROM trivia_questions WHERE hidden=:hidden AND day_of_week=:day_of_week LIMIT :max_questions";
+    $query = "SELECT * FROM trivia_questions WHERE hidden=:hidden LIMIT :max_questions OFFSET :quizOffset";
     $stmt = $pdo->prepare($query);
 
 
-    $stmt->execute([':hidden' => 'no', ':day_of_week' => $day_of_week, ':max_questions' => $max_questions]);
+    $stmt->execute([':hidden' => 'no', ':max_questions' => $max_questions, ':quizOffset' => $newOffset]);
 
     $result = $stmt->fetchALL(PDO::FETCH_ASSOC);
 
@@ -46,11 +71,11 @@ $category = htmlspecialchars($_GET['category']);
 
 
 if (isset($category)) { // Get rid of $api_key if not using:
-        
+
     /*
      * Call the readData Function
      */
-    $data = readData($pdo, $day_of_week, $max_questions);
+    $data = readData($pdo, $max, $questionOFFSET);
 
     $mData = []; // Temporary Array Placeholder:
     $answers = []; // Answer Columns from Table Array:
