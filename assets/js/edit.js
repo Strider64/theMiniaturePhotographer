@@ -9,7 +9,7 @@ const submitBtn = d.querySelector('#submitBtn');
 
 const id = d.querySelector('#id');
 const user_id = d.querySelector('#user_id');
-const category = d.querySelector('#category');
+const hidden = d.querySelector('#hiddenQ');
 const question = d.querySelector('#addQuestion');
 
 const answer1 = d.querySelector('#addAnswer1');
@@ -64,14 +64,14 @@ const myRed = myColor("rgba(84, 0, 30, 0.70)"); /* Red with 70% transparency */
 
 
 const insertData = (data) => {
-
+     
     record = data;
-
+    //console.log('record', record);
     position.textContent = record.id;
 
     user_id.value = record.user_id;
     id.value = record.id;
-    category.value = record.category;
+    hidden.value = record.hidden;
     question.value = record.question;
     answer1.value = record.answer1;
     answer2.value = record.answer2;
@@ -115,7 +115,7 @@ const reverse = (e) => {
 ePrev.addEventListener("click", reverse, false);
 
 var defaultCat = "photography";
-var requestUrl = "retrieve_table.php?category=photography";
+var requestUrl = "retrieve_table.php";
 
 /* Success function utilizing FETCH */
 const tableUISuccess = function (parsedData) {
@@ -189,7 +189,7 @@ var serializeArray = function (form) {
     var serialized = {
         id: parseInt(form.elements[1].value),
         user_id: parseInt(form.elements[2].value),
-        category: category.value,
+        hidden: hidden.value,
         question: question.value,
         answer1: answer1.value,
         answer2: answer2.value,
@@ -201,7 +201,7 @@ var serializeArray = function (form) {
 
     record.id = form.elements[1].value;
     record.user_id = form.elements[2].value;
-    record.category = category.value;
+    record.hidden = hidden.value;
     record.question = question.value;
     record.answer1 = answer1.value;
     record.answer2 = answer2.value;
@@ -216,7 +216,7 @@ var serializeArray = function (form) {
 
 
 const sendToTable = (e) => {
-    
+
     e.preventDefault();
     var form = d.querySelector('#editTrivia');
     saveRecord = serializeArray(form);
@@ -228,11 +228,6 @@ const sendToTable = (e) => {
 submitBtn.addEventListener('click', sendToTable, false);
 
 
-const selectCategory = (e) => {
-    e.preventDefault();
-    var defaultCat = e.target.value; 
-    var requestUrl = "retrieve_table.php?api_key=" + api_key + "&cat=" + defaultCat;
-    createRequest(requestUrl, tableUISuccess, tableUIError); 
-};
 
-category.addEventListener('change', selectCategory, false);
+
+createRequest("retrieve_table.php", tableUISuccess, tableUIError);

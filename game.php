@@ -19,6 +19,7 @@ $username = (isset($_SESSION['id'])) ? $login->username($_SESSION['id']) : null;
 
 if ($username) {
     $status = $login->checkSecurity($_SESSION['id']);
+    $displayMessage = "Welcome, " . $username . "!<br>";
 }
 
 include_once 'assets/includes/header.inc.php';
@@ -26,16 +27,23 @@ include_once 'assets/includes/header.inc.php';
 <div id="topOfGame" class="content">
     <main class="main-area">
         <section class="main">
-
+            <div class="displayStatus">
+                <h4 class="displayMessage" data-username="<?= ($username ?? 'Guest') ?>"><?= ($displayMessage ?? 'You are playing as a Guest!'); ?></h4>
+            </div>
+            <div id="scoreboard" class="finalResults">
+                <div id="totals">
+                    <H2><span class="username"></span>'s Stats</H2>
+                    <p>Total Score <span class="totalScore"></span> Points</p>
+                    <p>Total Answered Right was <span class="answeredRight"></span> out of <span class="totalQuestions"></span> questions</p>
+                </div>
+            </div>
             <div id="quiz">
 
-                <div id="gameTitle">
-                    <h2 class="gameTitle">Trivia Game</h2>
-                </div>
+
                 <div class="triviaContainer" data-key="<?php echo $_SESSION['api_key']; ?>" data-records=" ">             
                     <div id="mainGame">
                         <div id="headerStyle" data-user="">
-                            <h2>Time Left: <span id="clock"></span></h2>
+                            <h2>Time Left: <span id="clock"></span><span id="currentQuestion"></span><span id="totalQuestions"></span></h2>
                         </div>
 
                         <div id="triviaSection" data-correct="">
@@ -59,64 +67,45 @@ include_once 'assets/includes/header.inc.php';
     </main>
 
     <div class="sidebar">
-        <div class="squish-container">
-            <h3>Social Media</h3>
-            <nav class="social-media">
-                <ul>
-                    <li><a href="https://www.facebook.com/Pepster64/"><i class="fab fa-facebook-square"></i>Facebook</a></li>
-                    <li><a href="https://twitter.com/Strider64"><i class="fab fa-twitter"></i>Twitter</a></li>
-                    <li><a href="https://www.linkedin.com/in/johnpepp/"><i class="fab fa-linkedin-in"></i>LinkedIn</a></li>
-                    <li><a href="https://www.flickr.com/photos/pepster/sets/72157704634851262/"><i class="fab fa-flickr"></i>Flickr</a></li>
-                </ul>
-            </nav>
-        </div>
 
-        <table class="styled-table">
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Points</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Dom</td>
-                    <td>6000</td>
-                </tr>
-                <tr class="active-row">
-                    <td>Melissa</td>
-                    <td>5150</td>
-                </tr>
-                <tr>
-                    <td>Judi</td>
-                    <td>4000</td>
-                </tr>
-                <!-- and so on... -->
-            </tbody>
-        </table>
+
 
         <article class="addTriviaInfo">
             <h2>Add a Photography Trivia Question</h2>
+            <table class="styled-table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Points</th>
+                    </tr>
+                </thead>
+                <tbody class="anchor">
+
+                </tbody>
+            </table>
+
             <p>I have developed a photography trivia question game that lets people learn photography while having fun. I am sprucing up the game in order to bring even more fun to the game. The winner of after each day will be able to add a photography trivia question to the database table. The question and answers probably will not be posted right away in order for the question to be approved and/or edited. The only prize is getting top honors on a daily top high score listing on this website, plus the knowledge of being top for that day in knowing photography.</p>
         </article>
-        <?php if ($username) { ?>  
-            <?php if (isset($status) && $status === 'sysop') { ?>
-                <a class="qBtn" href="addQuiz.php" title="Add Photography Trivia Question">Add Question</a>
-                <a class="qBtn" href="editQuiz.php" title="Edit Photography Trivia Question">Edit Question</a> 
-                <a class="btn3" href="logout.php?pageLoc=game.php">Log Off</a>
-            <?php } ?>
-        <?php } else { ?>
-            <div class="login">
-                <h1>Login to Web App</h1>
-                <form method="post" action="login.php?pageLoc=game.php">
-                    <input type="text" name="username" value="" placeholder="Username">
-                    <input type="password" name="password" value="" placeholder="Password">
-                    <input type="submit" name="submit" value="Login">
-                </form>                        
-            </div>
-            <a class="btn1" href="register.php">register?</a>
 
-        <?php } ?>
+        <?php
+        if (isset($status) && $status === 'sysop') {
+            echo '<a class="qBtn" href="addQuiz.php" title="Add Photography Trivia Question">Add Question</a>';
+            echo '<a class="qBtn" href="editQuiz.php" title="Edit Photography Trivia Question">Edit Question</a>';
+            echo '<a class="btn3" href="logout.php?pageLoc=game.php">Log Off</a>';
+        } elseif (isset ($status) && $status === 'member') {
+            echo '<a class="btn3" href="logout.php?pageLoc=game.php">Log Off</a>';
+        } else {
+            echo '<div class="login">';
+            echo '<h1>Login to Web App</h1>';
+            echo '<form method="post" action="login.php?pageLoc=game.php">';
+            echo '<input type="text" name="username" value="" placeholder="Username">';
+            echo '<input type="password" name="password" value="" placeholder="Password">';
+            echo'<input type="submit" name="submit" value="Login">';
+            echo '</form>';
+            echo '</div>';
+            echo '<a class="btn1" href="register.php">register?</a>';
+        } // End Security Status if
+        ?>
     </div><!-- .sidebar -->
 </div><!-- .content -->    
 

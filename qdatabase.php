@@ -1,5 +1,10 @@
 <?php
 require_once 'assets/config/config.php';
+$todays_data = new \DateTime("now", new \DateTimeZone("America/Detroit"));
+
+$day_of_week = $todays_data->format('N');
+
+$max_questions = 10;
 
 /*
  * Database Connection 
@@ -18,13 +23,13 @@ $pdo = new PDO('mysql:host=' . DATABASE_HOST . ';dbname=' . DATABASE_NAME . ';ch
  * Read Questions & Answers in from the Database Table Named 'trivia_questions'
  */
 
-function readData($category, $pdo) {
+function readData($pdo, $day_of_week, $max_questions) {
 
-    $query = "SELECT id, question, answer1, answer2, answer3, answer4, category FROM trivia_questions WHERE category=:category";
+    $query = "SELECT * FROM trivia_questions WHERE hidden=:hidden AND day_of_week=:day_of_week LIMIT :max_questions";
     $stmt = $pdo->prepare($query);
 
 
-    $stmt->execute([':category' => $category]);
+    $stmt->execute([':hidden' => 'no', ':day_of_week' => $day_of_week, ':max_questions' => $max_questions]);
 
     $result = $stmt->fetchALL(PDO::FETCH_ASSOC);
 
@@ -45,7 +50,7 @@ if (isset($category)) { // Get rid of $api_key if not using:
     /*
      * Call the readData Function
      */
-    $data = readData($category, $pdo);
+    $data = readData($pdo, $day_of_week, $max_questions);
 
     $mData = []; // Temporary Array Placeholder:
     $answers = []; // Answer Columns from Table Array:

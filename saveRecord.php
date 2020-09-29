@@ -30,7 +30,7 @@ function updateQuiz($data, $pdo) {
             . "answer3 = :answer3, "
             . "answer4 = :answer4, "
             . "correct = :correct, "
-            . 'category = :category '
+            . 'hidden = :hidden '
             . "WHERE id = :id";
     $stmt = $pdo->prepare($query);
     $stmt->execute([
@@ -41,7 +41,7 @@ function updateQuiz($data, $pdo) {
         ':answer3' => $data['answer3'],
         ':answer4' => $data['answer4'],
         ':correct' => $data['correct'],
-        ':category' => $data['category'],
+        ':hidden' => $data['hidden'],
         ':id' => $data['id']
     ]);
     return \TRUE;

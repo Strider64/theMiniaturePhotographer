@@ -40,11 +40,10 @@ include_once 'assets/includes/header.inc.php';
                     <legend id="legend">Edit Trivia</legend>
                     <input id="id" type="hidden" name="id" value="0">
                     <input id="user_id" type="hidden" name="user_id" value="">
-                    <select id="category" class="select-css" name="category" tabindex="1">
+                    <select id="hiddenQ" class="select-css" name="hidden" tabindex="1">
                         <option id="setOption" value="" selected></option>
-                        <option value="photography">Photography</option>
-                        <option value="movie">Movie</option>
-                        <option value="space">Space</option>
+                        <option value="yes">Question is Hidden!</option>
+                        <option value="no">Question is NOT Hidden!</option>
                     </select>
                     <textarea id="addQuestion" name="question" tabindex="2" placeholder="Add question here..." autofocus></textarea>
                     <label for="addAnswer1">Answer 1</label>

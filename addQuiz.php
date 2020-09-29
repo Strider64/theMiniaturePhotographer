@@ -5,15 +5,17 @@ require_once "vendor/autoload.php";
 use Miniature\Calendar;
 use Miniature\Database as DB;
 use Miniature\Users as Login;
+use Miniature\Trivia;
 
 $login = new Login();
+$trivia = new Trivia();
 
 $username = (isset($_SESSION['id'])) ? $login->username($_SESSION['id']) : null;
 
 if (!$username) {
     header("Location: game.php");
     exit();
-} 
+}
 
 if ($username) {
     $status = $login->checkSecurity($_SESSION['id']);
@@ -40,7 +42,7 @@ function create($data, $pdo) {
     $stmt = $pdo->prepare($query);
     $result = $stmt->execute([
         ':user_id' => 1,
-        ':hidden' => 'no',
+        ':hidden' => 'yes',
         ':question' => $data['question'],
         ':answer1' => $data['answer1'],
         ':answer2' => $data['answer2'],
@@ -57,14 +59,15 @@ $data = [];
 $submit = filter_input(INPUT_POST, 'submit', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 if (isset($submit) && $submit === 'submit') {
     $data['question'] = filter_input(INPUT_POST, 'question', FILTER_DEFAULT);
-    $data['answer1'] = filter_input(INPUT_POST, 'answer1', FILTER_SANITIZE_SPECIAL_CHARS);
-    $data['answer2'] = filter_input(INPUT_POST, 'answer2', FILTER_SANITIZE_SPECIAL_CHARS);
-    $data['answer3'] = filter_input(INPUT_POST, 'answer3', FILTER_SANITIZE_SPECIAL_CHARS);
-    $data['answer4'] = filter_input(INPUT_POST, 'answer4', FILTER_SANITIZE_SPECIAL_CHARS);
-    $data['correct'] = filter_input(INPUT_POST, 'correct', FILTER_SANITIZE_SPECIAL_CHARS);
-    $data['category'] = filter_input(INPUT_POST, 'category', FILTER_SANITIZE_SPECIAL_CHARS);
+    $data['answer1'] = filter_input(INPUT_POST, 'answer1', FILTER_DEFAULT);
+    $data['answer2'] = filter_input(INPUT_POST, 'answer2', FILTER_DEFAULT);
+    $data['answer3'] = filter_input(INPUT_POST, 'answer3', FILTER_DEFAULT);
+    $data['answer4'] = filter_input(INPUT_POST, 'answer4', FILTER_DEFAULT);
+    $data['correct'] = filter_input(INPUT_POST, 'correct', FILTER_SANITIZE_NUMBER_INT);
+    $data['category'] = 'photography';
     $result = create($data, $pdo);
     if ($result) {
+        $trivia->resetPlaydate();
         header("Location: game.php");
         exit;
     }
@@ -80,11 +83,6 @@ include_once 'assets/includes/header.inc.php';
                     <legend id="legend">Add Trivia Question(s)</legend>
                     <input id="id" type="hidden" name="id" value="0">
                     <input type="hidden" name="user_id" value="">
-                    <select class="select-css" name="category" tabindex="1">
-                        <option value="photography">Photography</option>
-                        <option value="movie">Movie</option>
-                        <option value="space">Space</option>
-                    </select>
                     <textarea id="addQuestion" name="question" tabindex="2" placeholder="Add question here..." autofocus></textarea>
                     <label for="addAnswer1">Answer 1</label>
                     <input id="addAnswer1" type="text" name="answer1" value="" tabindex="3">
