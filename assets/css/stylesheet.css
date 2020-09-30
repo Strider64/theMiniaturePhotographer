@@ -436,18 +436,6 @@ div.site-branding {
   background: #e6e6e6;
   overflow: hidden; }
 
-.displayStatus {
-  display: block;
-  width: 100%;
-  max-width: 300px;
-  height: 40px;
-  background-color: #fff;
-  text-align: center;
-  line-height: 40px;
-  margin: 0 auto; }
-  .displayStatus .displayStatus {
-    line-height: 30px; }
-
 .social-media {
   padding-bottom: 1em; }
   .social-media ul {
@@ -1238,12 +1226,32 @@ a.btn3 {
 section.main {
   background: url(../images/bg-chalkboard-02.jpg) no-repeat center bottom;
   position: relative;
+  bottom: 50px;
   width: 100%;
   max-width: 50em;
   /* 800px ~ 50em */
   height: 70.00em;
   /* 1200px ~ 75em */
-  margin: -50px auto 10px; }
+  margin: 0 auto; }
+  section.main .displayStatus {
+    position: absolute;
+    top: 120px;
+    left: 150px;
+    display: block;
+    width: 100%;
+    max-width: 600px;
+    height: 40px;
+    text-align: center;
+    line-height: 40px; }
+    section.main .displayStatus .displayMessage {
+      font-size: 1.8em;
+      color: #fff;
+      padding: 5px 15px; }
+    section.main .displayStatus p {
+      text-align: left;
+      color: #fff;
+      font-size: 1.2em;
+      line-height: 1.5; }
   section.main .banner {
     position: absolute;
     top: 0px;

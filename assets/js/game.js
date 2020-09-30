@@ -131,9 +131,6 @@
 
             /*
              * Highlight Answers Function
-             */
-
-            /*
              * User answered correctly
              */
             if (userAnswer === correct && userAnswer === parseInt(answer.getAttribute('data-correct'))) {
@@ -293,7 +290,7 @@
 
     /* Save User Data to hs_table */
     const saveHSTableSuccess = function (info) {
-     
+
         if (info) {
             removeHighScores();
             createHSTable('retrieveHighScore.php', retrieveHSTableUISuccess, retrieveHSTableUIError);
@@ -334,7 +331,7 @@
         var max = 5; // Maximum Records to Be Displayed
         var maxium = {};
         maxium.max_limit = max;
-        
+
         fetch(retrieveUrl, {
             method: 'POST', // or 'PUT'
             body: JSON.stringify(maxium)
@@ -476,8 +473,13 @@
 
     d.querySelector('.main').scrollIntoView();
 
-    d.querySelector('#quiz').style.display = 'block';
+    const startGame = () => {
+        selectCat('photography');
+        d.querySelector('.displayStatus').style.display = 'none';
+        d.querySelector('#quiz').style.display = 'block';
+    };
 
-    selectCat('photography');
+    d.querySelector('.startBtn').addEventListener('click', startGame, false);
+
 
 })();
