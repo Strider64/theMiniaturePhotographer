@@ -4,6 +4,11 @@ require_once "vendor/autoload.php";
 
 use Miniature\Calendar;
 use Miniature\Users as Login;
+use Miniature\Trivia;
+
+$trivia = new Trivia();
+
+$clearDate = $trivia->clearTable();
 
 /*
  * Calendar code
