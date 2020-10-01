@@ -37,7 +37,11 @@ include_once 'assets/includes/header.inc.php';
             <div class="displayStatus">
                 <h4 class="displayMessage" data-username="<?= ($username ?? 'Guest') ?>"><?= ($displayMessage ?? 'Welcome, Guest!'); ?></h4>
                 <p>I have developed a photography trivia question game that lets people learn photography while having fun. I am sprucing up the game in order to bring even more fun to the game. The winner of after each day will be able to add a photography trivia question to the database table. The question and answers probably will not be posted right away in order for the question to be approved and/or edited. The only prize is getting top honors on a daily top high score listing on this website, plus the knowledge of being top for that day in knowing photography.</p>
-                <button class="startBtn">start</button>
+
+
+            </div>
+            <div id="startBtn">
+                <a class="logo" id="customBtn" title="Start Button" href="game.php"><span>Start Button</span></a>
             </div>
             <div id="scoreboard" class="finalResults">
                 <div id="totals">
@@ -118,10 +122,17 @@ include_once 'assets/includes/header.inc.php';
             echo '<input type="password" name="password" value="" placeholder="Password">';
             echo'<input type="submit" name="submit" value="Login">';
             echo '</form>';
+
             echo '</div>';
-            echo '<a class="btn1" href="register.php">register?</a>';
         } // End Security Status if
         ?>
+
+<!--        <form class="hstableUsername" method="post" action="">
+            <input type="text" name="username" value="" placeholder="username">
+            <input type="submit" name="submit" value="enter">
+        </form>-->
+
+        <a class="btn1" href="register.php">register?</a>
     </div><!-- .sidebar -->
 </div><!-- .content -->    
 

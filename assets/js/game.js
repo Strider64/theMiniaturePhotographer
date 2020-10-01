@@ -2,7 +2,7 @@
  *  The Chalkboard Quiz 5.60 using FETCH/JSON
  *  by John Pepp
  *  Started: January 14, 2020
- *  Revised: September 29, 2020 @ 1:30pm
+ *  Revised: September 30, 2020 @ 1:30pm
  */
 
 'use strict';
@@ -473,13 +473,15 @@
 
     d.querySelector('.main').scrollIntoView();
 
-    const startGame = () => {
+    const startGame = (e) => {
+        e.preventDefault();
         selectCat('photography');
+        d.querySelector('#startBtn').style.display = 'none';
         d.querySelector('.displayStatus').style.display = 'none';
         d.querySelector('#quiz').style.display = 'block';
     };
 
-    d.querySelector('.startBtn').addEventListener('click', startGame, false);
+    d.querySelector('#customBtn').addEventListener('click', startGame, false);
 
 
 })();
