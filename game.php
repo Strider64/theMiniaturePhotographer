@@ -132,7 +132,7 @@ include_once 'assets/includes/header.inc.php';
             <input type="submit" name="submit" value="enter">
         </form>-->
 
-        <a class="btn1" href="register.php">register?</a>
+        <?= !(isset($status)) ? '<a class="btn1" href="register.php">register?</a>' : null; ?>
     </div><!-- .sidebar -->
 </div><!-- .content -->    
 
