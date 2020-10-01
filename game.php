@@ -10,6 +10,37 @@ $trivia = new Trivia();
 
 $clearDate = $trivia->clearTable();
 
+//PHP array containing forenames.
+$names = [
+    'Sir',
+    'King',
+    'Buzz',
+    'Willy'
+];
+
+shuffle($names);
+ 
+//PHP array containing surnames.
+$surnames = [
+    'Lancelot',
+    'Arthur',
+    'Lightyear',
+    'Wanka'
+    ];
+
+    shuffle($surnames);
+ 
+//Generate a random forename.
+$random_name = $names[mt_rand(0, sizeof($names) - 1)];
+ 
+//Generate a random surname.
+$random_surname = $surnames[mt_rand(0, sizeof($surnames) - 1)];
+
+$rNum = random_int(100, 999);
+
+$generatedName = $random_name . ' ' . $random_surname . $rNum;
+
+$_SESSION['generatedName'] = $generatedName;
 /*
  * Calendar code
  */
@@ -23,9 +54,10 @@ $login = new Login();
 $username = (isset($_SESSION['id'])) ? $login->username($_SESSION['id']) : null;
 
 if ($username) {
-    $status = $login->checkSecurity($_SESSION['id']);
-    $displayMessage = "Welcome, " . $username . "!<br>";
+    $status = $login->checkSecurity($_SESSION['id']);    
 }
+
+$displayMessage = "You are playing as " . $generatedName . "!<br>";
 
 include_once 'assets/includes/header.inc.php';
 ?>
@@ -35,8 +67,9 @@ include_once 'assets/includes/header.inc.php';
         <section class="main">
 
             <div class="displayStatus">
-                <h4 class="displayMessage" data-username="<?= ($username ?? 'Guest') ?>"><?= ($displayMessage ?? 'Welcome, Guest!'); ?></h4>
+                <h4 class="displayMessage" data-username="<?= ($username ?? $generatedName) ?>"><?= ($displayMessage ?? 'Welcome, Guest!'); ?></h4>
                 <p>I have developed a photography trivia question game that lets people learn photography while having fun. I am sprucing up the game in order to bring even more fun to the game. The winner of after each day will be able to add a photography trivia question to the database table. The question and answers probably will not be posted right away in order for the question to be approved and/or edited. The only prize is getting top honors on a daily top high score listing on this website, plus the knowledge of being top for that day in knowing photography.</p>
+                <p>I have updated the way the username is displayed in the high score table, if you don't register/login then you will be randomly selected a username </p>
 
 
             </div>
@@ -127,10 +160,7 @@ include_once 'assets/includes/header.inc.php';
         } // End Security Status if
         ?>
 
-<!--        <form class="hstableUsername" method="post" action="">
-            <input type="text" name="username" value="" placeholder="username">
-            <input type="submit" name="submit" value="enter">
-        </form>-->
+
 
         <?= !(isset($status)) ? '<a class="btn1" href="register.php">register?</a>' : null; ?>
     </div><!-- .sidebar -->

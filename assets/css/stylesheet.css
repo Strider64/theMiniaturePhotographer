@@ -1267,9 +1267,10 @@ section.main {
     text-align: center;
     line-height: 40px; }
     section.main .displayStatus .displayMessage {
-      font-size: 1.8em;
+      font-size: 1.4em;
       color: #fff;
-      padding: 5px 15px; }
+      text-align: left;
+      padding: 5px 0; }
     section.main .displayStatus p {
       text-align: left;
       color: #fff;
