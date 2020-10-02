@@ -478,129 +478,6 @@ div.site-branding {
 .textStyle {
   color: #fff; }
 
-.login {
-  position: relative;
-  margin: 1.875em auto;
-  padding: 1.250em 1.250em 1.250em;
-  width: 25.00em;
-  background: #212121;
-  border-radius: 3px;
-  -webkit-box-shadow: 0 0 12.5em rgba(255, 255, 255, 0.5), 0 1px 2px rgba(0, 0, 0, 0.3);
-  box-shadow: 0 0 200px rgba(255, 255, 255, 0.5), 0 1px 2px rgba(0, 0, 0, 0.3); }
-  .login h1 {
-    margin: -20px -20px 21px;
-    line-height: 40px;
-    font-size: 15px;
-    font-weight: bold;
-    color: #555;
-    text-align: center;
-    text-shadow: 0 1px white;
-    background: #f3f3f3;
-    border-bottom: 1px solid #cfcfcf;
-    border-radius: 3px 3px 0 0;
-    background-image: -webkit-linear-gradient(top, whiteffd, #eef2f5);
-    background-image: -moz-linear-gradient(top, whiteffd, #eef2f5);
-    background-image: -o-linear-gradient(top, whiteffd, #eef2f5);
-    background-image: linear-gradient(to bottom, whiteffd, #eef2f5);
-    -webkit-box-shadow: 0 1px whitesmoke;
-    box-shadow: 0 1px whitesmoke; }
-  .login input[type=text], .login .login input[type=password] {
-    width: 100%; }
-  .login :-moz-placeholder {
-    color: #c9c9c9 !important;
-    font-size: 0.813em; }
-  .login ::-webkit-input-placeholder {
-    color: #ccc;
-    font-size: 0.813em; }
-  .login input {
-    font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;
-    font-size: 0.875em; }
-  .login input[type=text], .login input[type=password] {
-    margin: 0.313em;
-    padding: 0 0.625em;
-    width: 25.50em;
-    height: 2.125em;
-    color: #404040;
-    background: white;
-    border: 1px solid;
-    border-color: #c4c4c4 #d1d1d1 #d4d4d4;
-    border-radius: 2px;
-    outline: 5px solid #eff4f7;
-    -moz-outline-radius: 3px;
-    -webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.12);
-    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.12); }
-  .login input[type=text]:focus, .login input[type=password]:focus {
-    border-color: #7dc9e2;
-    outline-color: #dceefc;
-    outline-offset: 0; }
-  .login input[type=submit] {
-    padding: 0 1.125em;
-    display: block;
-    width: 7.500em;
-    height: 1.813em;
-    font-size: 0.750em;
-    font-weight: bold;
-    color: #527881;
-    text-transform: capitalize;
-    text-shadow: 0 1px #e3f1f1;
-    background: #cde5ef;
-    border: 1px solid;
-    border-color: #b4ccce #b3c0c8 #9eb9c2;
-    border-radius: 1.00em;
-    outline: 0;
-    -webkit-box-sizing: content-box;
-    -moz-box-sizing: content-box;
-    box-sizing: content-box;
-    background-image: -webkit-linear-gradient(top, #edf5f8, #cde5ef);
-    background-image: -moz-linear-gradient(top, #edf5f8, #cde5ef);
-    background-image: -o-linear-gradient(top, #edf5f8, #cde5ef);
-    background-image: linear-gradient(to bottom, #edf5f8, #cde5ef);
-    -webkit-box-shadow: inset 0 1px white, 0 1px 2px rgba(0, 0, 0, 0.15);
-    box-shadow: inset 0 1px white, 0 1px 2px rgba(0, 0, 0, 0.15);
-    margin: 10px auto; }
-  .login input[type=submit]:active {
-    background: #cde5ef;
-    border-color: #9eb9c2 #b3c0c8 #b4ccce;
-    -webkit-box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.2);
-    box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.2); }
-  .login .lt-ie9 input[type=text], .login .lt-ie9 input[type=password] {
-    line-height: 2.125em; }
-
-.login:before {
-  content: '';
-  position: absolute;
-  top: -8px;
-  right: -8px;
-  bottom: -8px;
-  left: -8px;
-  z-index: -1;
-  background: rgba(0, 0, 0, 0.08);
-  border-radius: 4px; }
-
-.hstableUsername {
-  display: block;
-  width: 100%;
-  height: 7.25em;
-  background-color: #000;
-  padding: 20px;
-  margin: 10px auto; }
-  .hstableUsername input[type=text] {
-    width: 100%;
-    height: 2.125em;
-    color: #404040;
-    padding: 0 0.625em;
-    margin: 0.313em 0; }
-    .hstableUsername input[type=text]:focus {
-      border-color: #7dc9e2;
-      outline-color: #dceefc;
-      outline-offset: 0; }
-  .hstableUsername input[type=submit] {
-    width: 50%;
-    background-color: #fff;
-    text-transform: capitalize;
-    padding: 2px;
-    margin: 0 auto; }
-
 .footer-area {
   padding: .4em 1em;
   text-align: center;
@@ -1245,369 +1122,6 @@ a.btn3 {
   input {
     width: 100%;
     margin-bottom: 15px; } }
-/* Trivia Game CSS */
-section.main {
-  background: url(../images/bg-chalkboard-02.jpg) no-repeat center bottom;
-  position: relative;
-  bottom: 50px;
-  width: 100%;
-  max-width: 50em;
-  /* 800px ~ 50em */
-  height: 70.00em;
-  /* 1200px ~ 75em */
-  margin: 0 auto; }
-  section.main .displayStatus {
-    position: absolute;
-    top: 120px;
-    left: 150px;
-    display: block;
-    width: 100%;
-    max-width: 600px;
-    height: 40px;
-    text-align: center;
-    line-height: 40px; }
-    section.main .displayStatus .displayMessage {
-      font-size: 1.4em;
-      color: #fff;
-      text-align: left;
-      padding: 5px 0; }
-    section.main .displayStatus p {
-      text-align: left;
-      color: #fff;
-      font-size: 1.2em;
-      line-height: 1.5; }
-  section.main section #customBtn:hover {
-    top: -154px; }
-  section.main .banner {
-    position: absolute;
-    top: 0px;
-    left: 120px;
-    color: #555;
-    font-size: 1.2em;
-    line-height: 1.5; }
-  section.main #header {
-    padding: 10px; }
-  section.main #gameLevel {
-    position: relative;
-    height: 80px;
-    top: 60px;
-    /* Support for rtl text, explicit support for Arabic and Hebrew */
-    /* Disabled styles */ }
-    section.main #gameLevel .select-css {
-      position: absolute;
-      top: 0px;
-      left: 40px;
-      display: block;
-      font-size: 16px;
-      font-family: sans-serif;
-      font-weight: 700;
-      color: #444;
-      line-height: 1.3;
-      padding: .6em 1.4em .5em .8em;
-      width: 100%;
-      max-width: 30%;
-      box-sizing: border-box;
-      margin: 0;
-      border: 1px solid #aaa;
-      box-shadow: 0 1px 0 1px rgba(0, 0, 0, 0.04);
-      border-radius: .5em;
-      -moz-appearance: none;
-      -webkit-appearance: none;
-      appearance: none;
-      background-color: #fff;
-      background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23007CB2%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E"), linear-gradient(to bottom, #ffffff 0%, #e5e5e5 100%);
-      background-repeat: no-repeat, repeat;
-      background-position: right .7em top 50%, 0 0;
-      background-size: .65em auto, 100%; }
-    section.main #gameLevel .select-css::-ms-expand {
-      display: none; }
-    section.main #gameLevel .select-css:hover {
-      border-color: #888; }
-    section.main #gameLevel .select-css:focus {
-      border-color: #aaa;
-      box-shadow: 0 0 1px 3px rgba(59, 153, 252, 0.7);
-      box-shadow: 0 0 0 3px -moz-mac-focusring;
-      color: #222;
-      outline: none; }
-    section.main #gameLevel .select-css option {
-      font-weight: normal; }
-    section.main #gameLevel *[dir="rtl"] .select-css, section.main #gameLevel :root:lang(ar) .select-css, section.main #gameLevel :root:lang(iw) .select-css {
-      background-position: left .7em top 50%, 0 0;
-      padding: .6em .8em .5em 1.4em; }
-    section.main #gameLevel .select-css:disabled, section.main #gameLevel .select-css[aria-disabled=true] {
-      color: graytext;
-      background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22graytext%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E"), linear-gradient(to bottom, #ffffff 0%, #e5e5e5 100%); }
-    section.main #gameLevel .select-css:disabled:hover, section.main #gameLevel .select-css[aria-disabled=true] {
-      border-color: #aaa; }
-    section.main #gameLevel a.btn4 {
-      position: absolute;
-      top: 0;
-      left: 320px;
-      clear: both;
-      font-size: 1.2em;
-      text-decoration: none;
-      color: #fff;
-      border: 1px solid #555;
-      padding: 4px 15px;
-      transition: background-color .5s; }
-      section.main #gameLevel a.btn4:hover {
-        background-color: rgba(255, 255, 255, 0.3); }
-
-#startBtn {
-  z-index: 1;
-  position: relative;
-  top: 37.50em;
-  left: 18.75em;
-  display: block;
-  width: 205px;
-  height: 154px;
-  overflow: hidden; }
-
-#customBtn {
-  position: absolute;
-  top: 0;
-  display: block;
-  width: 205px;
-  height: 308px;
-  z-index: 1;
-  background: url(../images/img-new-button-001.png) no-repeat 0 0; }
-  #customBtn span {
-    display: none; }
-
-section #customBtn:hover {
-  top: -154px; }
-
-/* Trivia Game CSS */
-#quiz {
-  display: none; }
-
-#movie, #space {
-  display: none; }
-
-form#gameCat {
-  display: block;
-  width: 100%;
-  max-width: 800px;
-  height: auto;
-  padding: 20px 0px;
-  margin: 5px auto; }
-  form#gameCat .select-css {
-    display: block;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 1.0em;
-    font-weight: 700;
-    text-transform: capitalize;
-    color: #4C8FEC;
-    line-height: 1.3;
-    padding: .6em 1.4em .5em .8em;
-    width: 100%;
-    max-width: 80%;
-    box-sizing: border-box;
-    margin: 40px 70px;
-    border: 1px solid #aaa;
-    box-shadow: 0 1px 0 1px rgba(0, 0, 0, 0.04);
-    border-radius: .5em;
-    -moz-appearance: none;
-    -webkit-appearance: none;
-    appearance: none;
-    background-color: #fff;
-    background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23007CB2%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E"), linear-gradient(to bottom, #ffffff 0%, #e5e5e5 100%);
-    background-repeat: no-repeat, repeat;
-    background-position: right .7em top 50%, 0 0;
-    background-size: .65em auto, 100%; }
-  form#gameCat .select-css .select-css::-ms-expand {
-    display: none; }
-  form#gameCat .select-css .select-css:hover {
-    border-color: #888; }
-  form#gameCat .select-css .select-css:focus {
-    border-color: #aaa;
-    box-shadow: 0 0 1px 3px rgba(59, 153, 252, 0.7);
-    box-shadow: 0 0 0 3px -moz-mac-focusring;
-    color: #222;
-    outline: none; }
-  form#gameCat .select-css .select-css option {
-    font-weight: normal; }
-
-#gameTitle {
-  display: block;
-  width: 100%;
-  max-width: 800px;
-  height: auto;
-  padding-top: 120px;
-  padding-left: 70px;
-  margin: 0px auto; }
-  #gameTitle h2.gameTitle {
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 1.4em;
-    line-height: 1.0;
-    color: #fff; }
-
-.triviaContainer {
-  display: block;
-  width: 100%;
-  max-width: 800px;
-  height: auto;
-  padding: 20px;
-  margin: 5px auto; }
-
-.triviaContainer #categories-form {
-  background-color: #f5f2d0;
-  padding: 20px; }
-
-.triviaContainer #categories-form label {
-  height: 20px;
-  font-family: 'Teko', sans-serif;
-  font-size: 1.8em;
-  color: rgba(85, 85, 85, 0.6); }
-
-.triviaContainer #categories-form select {
-  clear: both;
-  display: block;
-  height: 20px;
-  border: none;
-  outline: none;
-  background-color: #4484CE;
-  font-family: 'Teko', sans-serif;
-  font-size: 1.0em;
-  color: #f5f2d0;
-  text-transform: uppercase;
-  margin-top: 5px; }
-
-#mainGame::after {
-  content: ' ';
-  display: block;
-  clear: both; }
-
-#mainGame #headerStyle {
-  padding: 5px 50px;
-  margin: 90px 0 0 0; }
-
-#mainGame #headerStyle h2 {
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 1.4rem;
-  line-height: 1.5;
-  color: #fff; }
-  #mainGame #headerStyle h2 #clock {
-    font-size: 1.6em; }
-  #mainGame #headerStyle h2 #currentQuestion {
-    font-size: 1.4em;
-    margin-left: 11.250rem; }
-  #mainGame #headerStyle h2 #totalQuestions {
-    font-size: 1.4em; }
-
-#mainGame #triviaSection {
-  margin: 0px; }
-
-#mainGame #triviaSection #questionBox {
-  display: block;
-  width: 100%;
-  height: 400px;
-  padding: 10px 50px; }
-
-/* Flaired edges, by Tomas Theunissen */
-hr.hrStyle {
-  border: 5px solid #fff; }
-
-#mainGame #triviaSection #questionBox h2 {
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 1.2em;
-  line-height: 1.5;
-  color: #fff;
-  vertical-align: middle; }
-
-#mainGame #triviaSection #buttonContainer {
-  padding: 0 50px;
-  margin-bottom: 3px; }
-
-#mainGame #triviaSection #buttonContainer .answerButton {
-  display: block;
-  width: 100%;
-  height: 50px;
-  outline: none;
-  border: none;
-  cursor: pointer;
-  background-color: transparent;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 1.0em;
-  color: #fff;
-  text-transform: capitalize;
-  text-align: left;
-  padding-left: 10px;
-  margin: 0; }
-
-#mainGame #playerStats {
-  position: relative;
-  display: block;
-  width: 100%;
-  height: 40px; }
-
-#mainGame #playerStats #score {
-  position: absolute;
-  top: 50px;
-  left: 50px;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 1.2em;
-  color: #fff;
-  line-height: 15px; }
-
-#mainGame #playerStats #percent {
-  position: absolute;
-  top: 50px;
-  right: 50px;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 1.2em;
-  color: #fff;
-  line-height: 15px; }
-
-#mainGame #nextStyle {
-  position: relative;
-  top: 50px;
-  right: 10px;
-  display: block;
-  width: 100%;
-  height: 50px; }
-
-#mainGame #nextStyle #next {
-  position: absolute;
-  top: 8px;
-  right: 20px;
-  border: none;
-  outline: none;
-  display: block;
-  width: 100%;
-  max-width: 150px;
-  height: 40px;
-  cursor: pointer;
-  background-color: #555;
-  font-family: 'Teko', sans-serif;
-  font-size: 1.4em;
-  color: #fff;
-  text-transform: capitalize; }
-
-#mainGame #nextStyle #next:hover {
-  background-color: rgba(85, 85, 85, 0.7);
-  color: #fff; }
-
-a.qBtn {
-  float: right;
-  font-size: 1.0em;
-  text-decoration: none;
-  text-transform: capitalize;
-  color: #555;
-  border: 1px solid #555;
-  padding: 2px 7px;
-  margin-right: 5.000em;
-  margin-bottom: 3.125em;
-  transition: background-color .5s; }
-  a.qBtn:visited, a.qBtn:active {
-    background-color: #555; }
-  a.qBtn:hover {
-    color: #555;
-    background-color: rgba(0, 0, 0, 0.3); }
-
-.disableClick {
-  pointer-events: "none"; }
-
 div#remote {
   position: relative;
   display: block;
@@ -1765,13 +1279,17 @@ form#addTriviaQA, form#editTrivia {
 
 .styled-table {
   border-collapse: collapse;
-  margin: 25px 0;
   font-size: 0.9em;
   font-family: sans-serif;
-  min-width: 400px;
+  min-width: 100%;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.15); }
 
-.styled-table thead tr {
+.styled-table thead tr.tableTitle {
+  background-color: #fff; }
+  .styled-table thead tr.tableTitle th {
+    text-align: center; }
+
+.styled-table thead tr.subTitle {
   background-color: #009879;
   color: #ffffff;
   text-align: left; }
@@ -1802,6 +1320,63 @@ form#addTriviaQA, form#editTrivia {
   color: #fff;
   line-height: 0.6; }
 
+/* 40em = 640px */
+@media screen and (max-width: 40em) {
+  /* Hide switcher on small screens */
+  .sidebar-switcher {
+    display: none; } }
+/* 40em = 640px */
+/* 50em = 800px */
+@media screen and (min-width: 50em) {
+  #scoreboard {
+    display: none;
+    position: absolute;
+    top: 120px;
+    left: 220px; }
+
+  .styled-table {
+    border-collapse: collapse;
+    margin: 25px auto;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    min-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15); }
+
+  .styled-table thead tr.tableTitle {
+    background-color: #fff; }
+    .styled-table thead tr.tableTitle th {
+      text-align: center; }
+
+  .styled-table thead tr.subTitle {
+    background-color: #009879;
+    color: #ffffff;
+    text-align: left; }
+
+  .styled-table th,
+  .styled-table td {
+    padding: 12px 15px; }
+
+  .styled-table tbody tr {
+    border-bottom: 1px solid #dddddd; }
+
+  .styled-table tbody tr:nth-of-type(even) {
+    background-color: silver; }
+
+  .styled-table tbody tr:nth-of-type(odd) {
+    background-color: #fff; }
+
+  .styled-table tbody tr:last-of-type {
+    border-bottom: 2px solid #009879; }
+
+  .styled-table tbody tr.active-row {
+    font-weight: bold;
+    color: #00b28d; }
+
+  #totals h2 {
+    color: #fff; }
+  #totals p {
+    color: #fff;
+    line-height: 0.6; } }
 article.about {
   display: block;
   width: 100%;
@@ -2132,5 +1707,797 @@ div.frame {
 
 .sidebar {
   background: white; }
+
+.masthead {
+  display: none; }
+
+.login {
+  position: relative;
+  margin: .313em auto;
+  padding: 1.250em 1.250em 1.250em;
+  width: 100%;
+  background: #212121;
+  border-radius: 3px;
+  -webkit-box-shadow: 0 0 12.5em rgba(255, 255, 255, 0.5), 0 1px 2px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0 200px rgba(255, 255, 255, 0.5), 0 1px 2px rgba(0, 0, 0, 0.3); }
+  .login h1 {
+    margin: -20px -20px 21px;
+    line-height: 40px;
+    font-size: 15px;
+    font-weight: bold;
+    color: #555;
+    text-align: center;
+    text-shadow: 0 1px white;
+    background: #f3f3f3;
+    border-bottom: 1px solid #cfcfcf;
+    border-radius: 3px 3px 0 0;
+    background-image: -webkit-linear-gradient(top, whiteffd, #eef2f5);
+    background-image: -moz-linear-gradient(top, whiteffd, #eef2f5);
+    background-image: -o-linear-gradient(top, whiteffd, #eef2f5);
+    background-image: linear-gradient(to bottom, whiteffd, #eef2f5);
+    -webkit-box-shadow: 0 1px whitesmoke;
+    box-shadow: 0 1px whitesmoke; }
+  .login input[type=text], .login .login input[type=password] {
+    width: 100%; }
+  .login :-moz-placeholder {
+    color: #c9c9c9 !important;
+    font-size: 0.813em; }
+  .login ::-webkit-input-placeholder {
+    color: #ccc;
+    font-size: 0.813em; }
+  .login input {
+    font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;
+    font-size: 0.875em; }
+  .login input[type=text], .login input[type=password] {
+    margin: 0.313em;
+    padding: 0 0.625em;
+    width: 100%;
+    height: 2.125em;
+    color: #404040;
+    background: white;
+    border: 1px solid;
+    border-color: #c4c4c4 #d1d1d1 #d4d4d4;
+    border-radius: 2px;
+    outline: 5px solid #eff4f7;
+    -moz-outline-radius: 3px;
+    -webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.12);
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.12); }
+  .login input[type=text]:focus, .login input[type=password]:focus {
+    border-color: #7dc9e2;
+    outline-color: #dceefc;
+    outline-offset: 0; }
+  .login input[type=submit] {
+    padding: 0 1.125em;
+    display: block;
+    width: 7.500em;
+    height: 1.813em;
+    font-size: 0.750em;
+    font-weight: bold;
+    color: #527881;
+    text-transform: capitalize;
+    text-shadow: 0 1px #e3f1f1;
+    background: #cde5ef;
+    border: 1px solid;
+    border-color: #b4ccce #b3c0c8 #9eb9c2;
+    border-radius: 1.00em;
+    outline: 0;
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+    background-image: -webkit-linear-gradient(top, #edf5f8, #cde5ef);
+    background-image: -moz-linear-gradient(top, #edf5f8, #cde5ef);
+    background-image: -o-linear-gradient(top, #edf5f8, #cde5ef);
+    background-image: linear-gradient(to bottom, #edf5f8, #cde5ef);
+    -webkit-box-shadow: inset 0 1px white, 0 1px 2px rgba(0, 0, 0, 0.15);
+    box-shadow: inset 0 1px white, 0 1px 2px rgba(0, 0, 0, 0.15);
+    margin: 10px auto; }
+  .login input[type=submit]:active {
+    background: #cde5ef;
+    border-color: #9eb9c2 #b3c0c8 #b4ccce;
+    -webkit-box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.2);
+    box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.2); }
+  .login .lt-ie9 input[type=text], .login .lt-ie9 input[type=password] {
+    line-height: 2.125em; }
+
+.login:before {
+  content: '';
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  bottom: -8px;
+  left: -8px;
+  z-index: -1;
+  background: rgba(0, 0, 0, 0.08);
+  border-radius: 4px; }
+
+.main-area {
+  padding: 0; }
+
+/* Trivia Game CSS */
+#quiz {
+  display: none; }
+
+#startBtn {
+  z-index: 1;
+  position: relative;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 12.813rem;
+  height: 9.625rem;
+  margin: 0 auto;
+  overflow: hidden; }
+  #startBtn #customBtn {
+    position: absolute;
+    top: 0;
+    display: block;
+    width: 12.813rem;
+    height: 19.250rem;
+    z-index: 1;
+    background: url(../images/img-new-button-001.png) no-repeat 0 0; }
+    #startBtn #customBtn span {
+      display: none; }
+
+/* Trivia Game CSS */
+section.main {
+  position: relative;
+  width: 100%;
+  /* 800px ~ 50em */
+  height: auto;
+  /* 1200px ~ 75em */
+  padding: 2px; }
+  section.main .displayStatus {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 40px;
+    text-align: center;
+    line-height: 40px; }
+    section.main .displayStatus .displayMessage {
+      font-size: 1.4em;
+      color: #4444CD;
+      text-align: left;
+      padding: 5px 0; }
+    section.main .displayStatus p {
+      text-align: left;
+      color: #4444CD;
+      font-size: 1.2em;
+      line-height: 1.5; }
+
+.triviaContainer {
+  display: block;
+  width: 100%;
+  height: auto;
+  padding: 5px;
+  margin: 5px auto; }
+
+.triviaContainer #categories-form {
+  background-color: #f5f2d0;
+  padding: 20px; }
+
+.triviaContainer #categories-form label {
+  height: 20px;
+  font-family: 'Teko', sans-serif;
+  font-size: 1.8em;
+  color: rgba(85, 85, 85, 0.6); }
+
+.triviaContainer #categories-form select {
+  clear: both;
+  display: block;
+  height: 20px;
+  border: none;
+  outline: none;
+  background-color: #4484CE;
+  font-family: 'Teko', sans-serif;
+  font-size: 1.0em;
+  color: #f5f2d0;
+  text-transform: uppercase;
+  margin-top: 5px; }
+
+#mainGame::after {
+  content: ' ';
+  display: block;
+  clear: both; }
+
+#mainGame #headerStyle {
+  padding: 5px;
+  margin: 0; }
+
+#mainGame #headerStyle h2 {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1.0rem;
+  line-height: 1.2;
+  color: #4444CD; }
+  #mainGame #headerStyle h2 #clock {
+    font-size: 1.2em; }
+  #mainGame #headerStyle h2 #currentQuestion {
+    font-size: 1.2em;
+    margin-left: 2rem; }
+  #mainGame #headerStyle h2 #totalQuestions {
+    font-size: 1.2em; }
+
+#mainGame #triviaSection {
+  margin: 0px; }
+
+#mainGame #triviaSection #questionBox {
+  display: block;
+  width: 100%;
+  height: 18.75em;
+  padding: 5px; }
+
+/* Flaired edges, by Tomas Theunissen */
+hr.hrStyle {
+  border: 5px solid #fff; }
+
+#mainGame #triviaSection #questionBox h2 {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1.0em;
+  line-height: 1.5;
+  color: #4444CD;
+  vertical-align: middle; }
+
+#mainGame #triviaSection #buttonContainer {
+  padding: 2px;
+  margin-bottom: 3px; }
+
+#mainGame #triviaSection #buttonContainer .answerButton {
+  display: block;
+  width: 100%;
+  height: 50px;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  background-color: transparent;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1.0em;
+  color: #4444CD;
+  text-transform: capitalize;
+  text-align: left;
+  padding-left: 10px;
+  margin: 0; }
+
+#mainGame #playerStats {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 40px; }
+
+#mainGame #playerStats #score {
+  position: absolute;
+  top: 50px;
+  left: 5px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1.0em;
+  color: #4444CD;
+  line-height: 15px; }
+
+#mainGame #playerStats #percent {
+  position: absolute;
+  top: 50px;
+  right: 50px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1.0em;
+  color: #4444CD;
+  line-height: 15px; }
+
+#mainGame #nextStyle {
+  position: relative;
+  top: 0px;
+  right: 0px;
+  width: 100%;
+  height: 50px; }
+
+#mainGame #nextStyle #next {
+  position: absolute;
+  top: 8px;
+  right: 20px;
+  border: none;
+  outline: none;
+  display: block;
+  width: 100%;
+  max-width: 150px;
+  height: 40px;
+  cursor: pointer;
+  background-color: #555;
+  font-family: 'Teko', sans-serif;
+  font-size: 1.2em;
+  color: #fff;
+  text-transform: capitalize; }
+
+#mainGame #nextStyle #next:hover {
+  background-color: rgba(85, 85, 85, 0.7);
+  color: #fff; }
+
+a.qBtn {
+  float: right;
+  font-size: 1.0em;
+  text-decoration: none;
+  text-transform: capitalize;
+  color: #555;
+  border: 1px solid #555;
+  padding: 2px 7px;
+  margin-right: 5.000em;
+  margin-bottom: 3.125em;
+  transition: background-color .5s; }
+  a.qBtn:visited, a.qBtn:active {
+    background-color: #555; }
+  a.qBtn:hover {
+    color: #555;
+    background-color: rgba(0, 0, 0, 0.3); }
+
+.disableClick {
+  pointer-events: "none"; }
+
+/* 40em = 640px */
+@media screen and (max-width: 40em) {
+  /* Hide switcher on small screens */
+  .sidebar-switcher {
+    display: none; } }
+/* 40em = 640px */
+/* 50em = 800px */
+@media screen and (min-width: 50em) {
+  .login {
+    position: relative;
+    margin: 1.875em auto;
+    padding: 1.250em 1.250em 1.250em;
+    width: 25.00em;
+    background: #212121;
+    border-radius: 3px;
+    -webkit-box-shadow: 0 0 12.5em rgba(255, 255, 255, 0.5), 0 1px 2px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 200px rgba(255, 255, 255, 0.5), 0 1px 2px rgba(0, 0, 0, 0.3); }
+    .login h1 {
+      margin: -20px -20px 21px;
+      line-height: 40px;
+      font-size: 15px;
+      font-weight: bold;
+      color: #555;
+      text-align: center;
+      text-shadow: 0 1px white;
+      background: #f3f3f3;
+      border-bottom: 1px solid #cfcfcf;
+      border-radius: 3px 3px 0 0;
+      background-image: -webkit-linear-gradient(top, whiteffd, #eef2f5);
+      background-image: -moz-linear-gradient(top, whiteffd, #eef2f5);
+      background-image: -o-linear-gradient(top, whiteffd, #eef2f5);
+      background-image: linear-gradient(to bottom, whiteffd, #eef2f5);
+      -webkit-box-shadow: 0 1px whitesmoke;
+      box-shadow: 0 1px whitesmoke; }
+    .login input[type=text], .login .login input[type=password] {
+      width: 100%; }
+    .login :-moz-placeholder {
+      color: #c9c9c9 !important;
+      font-size: 0.813em; }
+    .login ::-webkit-input-placeholder {
+      color: #ccc;
+      font-size: 0.813em; }
+    .login input {
+      font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;
+      font-size: 0.875em; }
+    .login input[type=text], .login input[type=password] {
+      margin: 0.313em;
+      padding: 0 0.625em;
+      width: 25.50em;
+      height: 2.125em;
+      color: #404040;
+      background: white;
+      border: 1px solid;
+      border-color: #c4c4c4 #d1d1d1 #d4d4d4;
+      border-radius: 2px;
+      outline: 5px solid #eff4f7;
+      -moz-outline-radius: 3px;
+      -webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.12);
+      box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.12); }
+    .login input[type=text]:focus, .login input[type=password]:focus {
+      border-color: #7dc9e2;
+      outline-color: #dceefc;
+      outline-offset: 0; }
+    .login input[type=submit] {
+      padding: 0 1.125em;
+      display: block;
+      width: 7.500em;
+      height: 1.813em;
+      font-size: 0.750em;
+      font-weight: bold;
+      color: #527881;
+      text-transform: capitalize;
+      text-shadow: 0 1px #e3f1f1;
+      background: #cde5ef;
+      border: 1px solid;
+      border-color: #b4ccce #b3c0c8 #9eb9c2;
+      border-radius: 1.00em;
+      outline: 0;
+      -webkit-box-sizing: content-box;
+      -moz-box-sizing: content-box;
+      box-sizing: content-box;
+      background-image: -webkit-linear-gradient(top, #edf5f8, #cde5ef);
+      background-image: -moz-linear-gradient(top, #edf5f8, #cde5ef);
+      background-image: -o-linear-gradient(top, #edf5f8, #cde5ef);
+      background-image: linear-gradient(to bottom, #edf5f8, #cde5ef);
+      -webkit-box-shadow: inset 0 1px white, 0 1px 2px rgba(0, 0, 0, 0.15);
+      box-shadow: inset 0 1px white, 0 1px 2px rgba(0, 0, 0, 0.15);
+      margin: 10px auto; }
+    .login input[type=submit]:active {
+      background: #cde5ef;
+      border-color: #9eb9c2 #b3c0c8 #b4ccce;
+      -webkit-box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.2);
+      box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.2); }
+    .login .lt-ie9 input[type=text], .login .lt-ie9 input[type=password] {
+      line-height: 2.125em; }
+
+  .login:before {
+    content: '';
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    bottom: -8px;
+    left: -8px;
+    z-index: -1;
+    background: rgba(0, 0, 0, 0.08);
+    border-radius: 4px; }
+
+  /* Trivia Game CSS */
+  section.main {
+    background: url(../images/bg-chalkboard-02.jpg) no-repeat center bottom;
+    position: relative;
+    bottom: 50px;
+    width: 100%;
+    max-width: 50em;
+    /* 800px ~ 50em */
+    height: 70.00em;
+    /* 1200px ~ 75em */
+    margin: 0 auto; }
+    section.main .displayStatus {
+      position: absolute;
+      top: 120px;
+      left: 150px;
+      display: block;
+      width: 100%;
+      max-width: 600px;
+      height: 40px;
+      text-align: center;
+      line-height: 40px; }
+      section.main .displayStatus .displayMessage {
+        font-size: 1.4em;
+        color: #fff;
+        text-align: left;
+        padding: 5px 0; }
+      section.main .displayStatus p {
+        text-align: left;
+        color: #fff;
+        font-size: 1.2em;
+        line-height: 1.5; }
+    section.main section #customBtn:hover {
+      top: -154px; }
+    section.main .banner {
+      position: absolute;
+      top: 0px;
+      left: 120px;
+      color: #555;
+      font-size: 1.2em;
+      line-height: 1.5; }
+    section.main #header {
+      padding: 10px; }
+    section.main #gameLevel {
+      position: relative;
+      height: 80px;
+      top: 60px;
+      /* Support for rtl text, explicit support for Arabic and Hebrew */
+      /* Disabled styles */ }
+      section.main #gameLevel .select-css {
+        position: absolute;
+        top: 0px;
+        left: 40px;
+        display: block;
+        font-size: 16px;
+        font-family: sans-serif;
+        font-weight: 700;
+        color: #444;
+        line-height: 1.3;
+        padding: .6em 1.4em .5em .8em;
+        width: 100%;
+        max-width: 30%;
+        box-sizing: border-box;
+        margin: 0;
+        border: 1px solid #aaa;
+        box-shadow: 0 1px 0 1px rgba(0, 0, 0, 0.04);
+        border-radius: .5em;
+        -moz-appearance: none;
+        -webkit-appearance: none;
+        appearance: none;
+        background-color: #fff;
+        background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23007CB2%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E"), linear-gradient(to bottom, #ffffff 0%, #e5e5e5 100%);
+        background-repeat: no-repeat, repeat;
+        background-position: right .7em top 50%, 0 0;
+        background-size: .65em auto, 100%; }
+      section.main #gameLevel .select-css::-ms-expand {
+        display: none; }
+      section.main #gameLevel .select-css:hover {
+        border-color: #888; }
+      section.main #gameLevel .select-css:focus {
+        border-color: #aaa;
+        box-shadow: 0 0 1px 3px rgba(59, 153, 252, 0.7);
+        box-shadow: 0 0 0 3px -moz-mac-focusring;
+        color: #222;
+        outline: none; }
+      section.main #gameLevel .select-css option {
+        font-weight: normal; }
+      section.main #gameLevel *[dir="rtl"] .select-css, section.main #gameLevel :root:lang(ar) .select-css, section.main #gameLevel :root:lang(iw) .select-css {
+        background-position: left .7em top 50%, 0 0;
+        padding: .6em .8em .5em 1.4em; }
+      section.main #gameLevel .select-css:disabled, section.main #gameLevel .select-css[aria-disabled=true] {
+        color: graytext;
+        background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22graytext%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E"), linear-gradient(to bottom, #ffffff 0%, #e5e5e5 100%); }
+      section.main #gameLevel .select-css:disabled:hover, section.main #gameLevel .select-css[aria-disabled=true] {
+        border-color: #aaa; }
+      section.main #gameLevel a.btn4 {
+        position: absolute;
+        top: 0;
+        left: 320px;
+        clear: both;
+        font-size: 1.2em;
+        text-decoration: none;
+        color: #fff;
+        border: 1px solid #555;
+        padding: 4px 15px;
+        transition: background-color .5s; }
+        section.main #gameLevel a.btn4:hover {
+          background-color: rgba(255, 255, 255, 0.3); }
+
+  #startBtn {
+    z-index: 1;
+    position: relative;
+    top: 40em;
+    left: 0;
+    display: block;
+    width: 205px;
+    height: 154px;
+    overflow: hidden; }
+
+  #customBtn {
+    position: absolute;
+    top: 0;
+    display: block;
+    width: 205px;
+    height: 308px;
+    z-index: 1;
+    background: url(../images/img-new-button-001.png) no-repeat 0 0; }
+    #customBtn span {
+      display: none; }
+
+  section #customBtn:hover {
+    top: -154px; }
+
+  /* Trivia Game CSS */
+  #quiz {
+    display: none; }
+
+  #movie, #space {
+    display: none; }
+
+  form#gameCat {
+    display: block;
+    width: 100%;
+    max-width: 800px;
+    height: auto;
+    padding: 20px 0px;
+    margin: 5px auto; }
+    form#gameCat .select-css {
+      display: block;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 1.0em;
+      font-weight: 700;
+      text-transform: capitalize;
+      color: #4C8FEC;
+      line-height: 1.3;
+      padding: .6em 1.4em .5em .8em;
+      width: 100%;
+      max-width: 80%;
+      box-sizing: border-box;
+      margin: 40px 70px;
+      border: 1px solid #aaa;
+      box-shadow: 0 1px 0 1px rgba(0, 0, 0, 0.04);
+      border-radius: .5em;
+      -moz-appearance: none;
+      -webkit-appearance: none;
+      appearance: none;
+      background-color: #fff;
+      background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23007CB2%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E"), linear-gradient(to bottom, #ffffff 0%, #e5e5e5 100%);
+      background-repeat: no-repeat, repeat;
+      background-position: right .7em top 50%, 0 0;
+      background-size: .65em auto, 100%; }
+    form#gameCat .select-css .select-css::-ms-expand {
+      display: none; }
+    form#gameCat .select-css .select-css:hover {
+      border-color: #888; }
+    form#gameCat .select-css .select-css:focus {
+      border-color: #aaa;
+      box-shadow: 0 0 1px 3px rgba(59, 153, 252, 0.7);
+      box-shadow: 0 0 0 3px -moz-mac-focusring;
+      color: #222;
+      outline: none; }
+    form#gameCat .select-css .select-css option {
+      font-weight: normal; }
+
+  #gameTitle {
+    display: block;
+    width: 100%;
+    max-width: 800px;
+    height: auto;
+    padding-top: 120px;
+    padding-left: 70px;
+    margin: 0px auto; }
+    #gameTitle h2.gameTitle {
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 1.4em;
+      line-height: 1.0;
+      color: #fff; }
+
+  .triviaContainer {
+    display: block;
+    width: 100%;
+    max-width: 800px;
+    height: auto;
+    padding: 20px;
+    margin: 5px auto; }
+
+  .triviaContainer #categories-form {
+    background-color: #f5f2d0;
+    padding: 20px; }
+
+  .triviaContainer #categories-form label {
+    height: 20px;
+    font-family: 'Teko', sans-serif;
+    font-size: 1.8em;
+    color: rgba(85, 85, 85, 0.6); }
+
+  .triviaContainer #categories-form select {
+    clear: both;
+    display: block;
+    height: 20px;
+    border: none;
+    outline: none;
+    background-color: #4484CE;
+    font-family: 'Teko', sans-serif;
+    font-size: 1.0em;
+    color: #f5f2d0;
+    text-transform: uppercase;
+    margin-top: 5px; }
+
+  #mainGame::after {
+    content: ' ';
+    display: block;
+    clear: both; }
+
+  #mainGame #headerStyle {
+    padding: 5px 50px;
+    margin: 90px 0 0 0; }
+
+  #mainGame #headerStyle h2 {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.4rem;
+    line-height: 1.5;
+    color: #C63637; }
+    #mainGame #headerStyle h2 #clock {
+      font-size: 1.6em; }
+    #mainGame #headerStyle h2 #currentQuestion {
+      font-size: 1.4em;
+      margin-left: 11.250rem; }
+    #mainGame #headerStyle h2 #totalQuestions {
+      font-size: 1.4em; }
+
+  #mainGame #triviaSection {
+    margin: 0px; }
+
+  #mainGame #triviaSection #questionBox {
+    display: block;
+    width: 100%;
+    height: 400px;
+    padding: 10px 50px; }
+
+  /* Flaired edges, by Tomas Theunissen */
+  hr.hrStyle {
+    border: 5px solid #fff; }
+
+  #mainGame #triviaSection #questionBox h2 {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.2em;
+    line-height: 1.5;
+    color: #fff;
+    vertical-align: middle; }
+
+  #mainGame #triviaSection #buttonContainer {
+    padding: 0 50px;
+    margin-bottom: 3px; }
+
+  #mainGame #triviaSection #buttonContainer .answerButton {
+    display: block;
+    width: 100%;
+    height: 50px;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    background-color: transparent;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.0em;
+    color: #fff;
+    text-transform: capitalize;
+    text-align: left;
+    padding-left: 10px;
+    margin: 0; }
+
+  #mainGame #playerStats {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 40px; }
+
+  #mainGame #playerStats #score {
+    position: absolute;
+    top: 50px;
+    left: 50px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.2em;
+    color: #fff;
+    line-height: 15px; }
+
+  #mainGame #playerStats #percent {
+    position: absolute;
+    top: 50px;
+    right: 50px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.2em;
+    color: #fff;
+    line-height: 15px; }
+
+  #mainGame #nextStyle {
+    position: relative;
+    top: 50px;
+    right: 10px;
+    display: block;
+    width: 100%;
+    height: 50px; }
+
+  #mainGame #nextStyle #next {
+    position: absolute;
+    top: 8px;
+    right: 20px;
+    border: none;
+    outline: none;
+    display: block;
+    width: 100%;
+    max-width: 150px;
+    height: 40px;
+    cursor: pointer;
+    background-color: #555;
+    font-family: 'Teko', sans-serif;
+    font-size: 1.4em;
+    color: #fff;
+    text-transform: capitalize; }
+
+  #mainGame #nextStyle #next:hover {
+    background-color: rgba(85, 85, 85, 0.7);
+    color: #fff; }
+
+  a.qBtn {
+    float: right;
+    font-size: 1.0em;
+    text-decoration: none;
+    text-transform: capitalize;
+    color: #555;
+    border: 1px solid #555;
+    padding: 2px 7px;
+    margin-right: 5.000em;
+    margin-bottom: 3.125em;
+    transition: background-color .5s; }
+    a.qBtn:visited, a.qBtn:active {
+      background-color: #555; }
+    a.qBtn:hover {
+      color: #555;
+      background-color: rgba(0, 0, 0, 0.3); }
+
+  .disableClick {
+    pointer-events: "none"; } }
 
 /*# sourceMappingURL=stylesheet.css.map */

@@ -64,7 +64,7 @@ include_once 'assets/includes/header.inc.php';
 <div id="topOfGame" class="content">
     <main class="main-area">
 
-        <section class="main">
+        <section  class="main">
 
             <div class="displayStatus">
                 <h4 class="displayMessage" data-username="<?= ($username ?? $generatedName) ?>"><?= ($displayMessage ?? 'Welcome, Guest!'); ?></h4>
@@ -86,7 +86,7 @@ include_once 'assets/includes/header.inc.php';
             <div id="quiz">
 
 
-                <div class="triviaContainer" data-key="<?php echo $_SESSION['api_key']; ?>" data-records=" ">             
+                <div class="triviaContainer" data-records=" ">             
                     <div id="mainGame">
                         <div id="headerStyle" data-user="">
                             <h2>Time Left: <span id="clock"></span><span id="currentQuestion"></span><span id="totalQuestions"></span></h2>
@@ -114,22 +114,15 @@ include_once 'assets/includes/header.inc.php';
 
     <div class="sidebar">
 
-        <div class="squish-container">
-            <h3>Social Media</h3>
-            <nav class="social-media">
-                <ul>
-                    <li><a href="https://www.facebook.com/Pepster64/"><i class="fab fa-facebook-square"></i>Facebook</a></li>
-                    <li><a href="https://twitter.com/Strider64"><i class="fab fa-twitter"></i>Twitter</a></li>
-                    <li><a href="https://www.linkedin.com/in/johnpepp/"><i class="fab fa-linkedin-in"></i>LinkedIn</a></li>
-                    <li><a href="https://www.flickr.com/photos/pepster/sets/72157704634851262/"><i class="fab fa-flickr"></i>Flickr</a></li>
-                </ul>
-            </nav>
-        </div>
+
 
         <article class="addTriviaInfo">
             <table class="styled-table">
                 <thead>
-                    <tr>
+                    <tr class="tableTitle">
+                        <th colspan="2">High Scores</th>
+                    </tr>
+                    <tr class="subTitle">
                         <th>Name</th>
                         <th>Points</th>
                     </tr>
@@ -163,6 +156,7 @@ include_once 'assets/includes/header.inc.php';
 
 
         <?= !(isset($status)) ? '<a class="btn1" href="register.php">register?</a>' : null; ?>
+        <a class="btn1" href="index.php">home</a>
     </div><!-- .sidebar -->
 </div><!-- .content -->    
 

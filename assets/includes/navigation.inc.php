@@ -1,4 +1,4 @@
-<div class="nav-advanced menu">
+<div id="gameNav" class="nav-advanced menu">
     <nav id="advanced-nav" class="advanced-nav menu" role="navigation">
         <ul>
             <li>

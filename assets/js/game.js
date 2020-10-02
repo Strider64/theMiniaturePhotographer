@@ -90,7 +90,7 @@
         currentQuestion.textContent = (gameIndex + 1) + " out of ";
         totalQ.textContent = totalQuestions + " questions";
 
-        newClock.style['color'] = 'white';
+        newClock.style['color'] = '#C63637';
         newClock.textContent = ((seconds < 10) ? `0${seconds}` : seconds);
         const countdown = () => {
             if (seconds === 0) {
@@ -482,6 +482,6 @@
     };
 
     d.querySelector('#customBtn').addEventListener('click', startGame, false);
-
+    d.querySelector('#gameNav').style.display = "none";
 
 })();
