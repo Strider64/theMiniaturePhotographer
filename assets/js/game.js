@@ -483,5 +483,7 @@
 
     d.querySelector('#customBtn').addEventListener('click', startGame, false);
     d.querySelector('#gameNav').style.display = "none";
+    d.querySelector('#gameMasthead').style.display = "none";
+    d.querySelector('.main-area').style.padding = "0px";
 
 })();

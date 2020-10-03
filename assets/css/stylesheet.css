@@ -1708,9 +1708,6 @@ div.frame {
 .sidebar {
   background: white; }
 
-.masthead {
-  display: none; }
-
 .login {
   position: relative;
   margin: .313em auto;
@@ -1809,9 +1806,6 @@ div.frame {
   z-index: -1;
   background: rgba(0, 0, 0, 0.08);
   border-radius: 4px; }
-
-.main-area {
-  padding: 0; }
 
 /* Trivia Game CSS */
 #quiz {
@@ -2342,6 +2336,10 @@ a.qBtn {
     height: auto;
     padding: 20px;
     margin: 5px auto; }
+    .triviaContainer h4 {
+      color: #fff;
+      padding-top: 16px;
+      padding-left: 10px; }
 
   .triviaContainer #categories-form {
     background-color: #f5f2d0;

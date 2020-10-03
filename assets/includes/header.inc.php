@@ -57,7 +57,7 @@ if (array_key_exists($pageName, $temp)) {
         <a class="skip-link screen-reader-text" href="#content">Skip to content</a>
         <div class="outer-wrap">
 
-            <header class="masthead">
+            <header id="gameMasthead" class="masthead">
                 <?php require_once 'assets/includes/calendar.inc.php'; ?>
                 <div class="sidebar-switcher">
                     Select layout: <a href="#" class="sidebar-left-toggle"><i class="fas fa-align-left"></i><span class="screen-reader-text">Move sidebar to the left</span></a> <a href="#" class="sidebar-right-toggle"><i class="fas fa-align-right"></i><span class="screen-reader-text">Move sidebar to the right</span></a><a href="#" class="hide-sidebar-toggle"><i class="fas fa-arrow-circle-right"></i><span class="screen-reader-text">Remove sidebar</span></a>
