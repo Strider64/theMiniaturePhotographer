@@ -1867,6 +1867,10 @@ section.main {
   height: auto;
   padding: 5px;
   margin: 5px auto; }
+  .triviaContainer h4 {
+    color: #fff;
+    padding-top: 0px;
+    padding-left: 10px; }
 
 .triviaContainer #categories-form {
   background-color: #f5f2d0;
@@ -1986,7 +1990,7 @@ hr.hrStyle {
 
 #mainGame #nextStyle #next {
   position: absolute;
-  top: 8px;
+  top: -35px;
   right: 20px;
   border: none;
   outline: none;
