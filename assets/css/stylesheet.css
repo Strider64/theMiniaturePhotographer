@@ -1272,10 +1272,13 @@ form#addTriviaQA, form#editTrivia {
     margin-right: 0em; }
 
 #scoreboard {
-  display: none;
-  position: absolute;
-  top: 120px;
-  left: 220px; }
+  display: none; }
+  #scoreboard #totals {
+    padding: 0 15px; }
+    #scoreboard #totals h2 {
+      font-size: 1.0em; }
+    #scoreboard #totals p {
+      font-size: 0.8em; }
 
 .styled-table {
   border-collapse: collapse;

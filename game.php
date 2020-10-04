@@ -67,7 +67,7 @@ include_once 'assets/includes/header.inc.php';
         <section  class="main">
 
             <div class="displayStatus">
-                <h4 class="displayMessage">Welcome to Photography Trivia</h4>
+                <h4 class="displayTitle">Welcome to Photography Trivia</h4>
                 <p>I have developed a photography trivia question game that lets people learn photography while having fun. I am sprucing up the game in order to bring even more fun to the game. The winner of after each day will be able to add a photography trivia question to the database table. The question and answers probably will not be posted right away in order for the question to be approved and/or edited. The only prize is getting top honors on a daily top high score listing on this website, plus the knowledge of being top for that day in knowing photography.</p>
                 <p>I have updated the way the username is displayed in the high score table, if you don't register/login then you will be randomly selected a username </p>
 
@@ -88,18 +88,15 @@ include_once 'assets/includes/header.inc.php';
 
                 <div class="triviaContainer" data-records=" ">             
                     <div id="mainGame">
-                        <h4 class="displayMessage" data-username="<?= ($username ?? $generatedName) ?>"><?= ($displayMessage ?? 'Welcome, Guest!'); ?></h4>
-                        <div id="headerStyle" data-user="">
-                            <h2>Time Left: <span id="clock"></span><span id="currentQuestion"></span><span id="totalQuestions"></span></h2>
-                        </div>
-
                         <div id="triviaSection" data-correct="">
                             <div id="questionBox">
                                 <h2 id="question">What is the Question?</h2>
                             </div>
                             <div id="buttonContainer"></div>
                         </div>
-
+                        <div id="headerStyle" data-user="">
+                            <h2>Time Left: <span id="clock"></span><span id="currentQuestion"></span><span id="totalQuestions"></span></h2>
+                        </div>
                         <div id="playerStats">
                             <h2 id="score">Score 0 Points</h2>
                             <h2 id="percent">100 percent</h2>
@@ -116,7 +113,7 @@ include_once 'assets/includes/header.inc.php';
     <div class="sidebar">
 
 
-
+        <h4 class="displayMessage" data-username="<?= ($username ?? $generatedName) ?>"><?= ($username ?? $generatedName); ?></h4>
         <article class="addTriviaInfo">
             <table class="styled-table">
                 <thead>
