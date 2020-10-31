@@ -88,15 +88,16 @@ include_once 'assets/includes/header.inc.php';
 
                 <div class="triviaContainer" data-records=" ">             
                     <div id="mainGame">
+                        <div id="headerStyle" data-user="">
+                            <h2>Time Left: <span id="clock"></span><span id="currentQuestion"></span><span id="totalQuestions"></span></h2>
+                        </div>
                         <div id="triviaSection" data-correct="">
                             <div id="questionBox">
                                 <h2 id="question">What is the Question?</h2>
                             </div>
                             <div id="buttonContainer"></div>
                         </div>
-                        <div id="headerStyle" data-user="">
-                            <h2>Time Left: <span id="clock"></span><span id="currentQuestion"></span><span id="totalQuestions"></span></h2>
-                        </div>
+
                         <div id="playerStats">
                             <h2 id="score">Score 0 Points</h2>
                             <h2 id="percent">100 percent</h2>

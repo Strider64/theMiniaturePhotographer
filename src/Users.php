@@ -134,7 +134,7 @@ class Users {
         $this->stmt = static::pdo()->prepare($this->query); // Prepare the query:
         $this->stmt->execute([':username' => $username]); // Execute the query with the supplied user's emaile:
 
-        $this->result = $this->stmt->fetch(PDO::FETCH_OBJ);
+        $this->result = $this->stmt->fetch(PDO::FETCH_OBJ); // Fetch the User 
         //echo "<pre>" . print_r($this->result, 1) . "</pre>";
         if (isset($this->result->password) && password_verify($password, $this->result->password)) {
 

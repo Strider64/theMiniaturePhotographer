@@ -120,10 +120,6 @@ class Calendar {
         }
     }
 
-    /*
-     * Not Currently Being Used:
-     */
-
     protected function checkForEntry($calDate, $page = 'index.php') {
         
         $this->username = isset($_SESSION['user']) ? $_SESSION['user']->username : \NULL;

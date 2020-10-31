@@ -124,7 +124,7 @@ const tableUISuccess = function (parsedData) {
     insertData(records[tableIndex]);
 };
 
-/* If Database Table fails to load then answer a few hard coded Q&A */
+/* If Database Table fails */
 const tableUIError = function (error) {
     console.log("Database Table did not load", error);
 };

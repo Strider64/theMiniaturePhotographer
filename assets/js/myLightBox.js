@@ -56,8 +56,8 @@ const myLightBox = () => {
 
     const nextPic = (e) => {
         e.preventDefault();
-
-        console.log(picture);
+        console.log('count', count);
+        //console.log(picture);
         if (count <= parseInt(total) - 1) {
             count = parseInt(count) + 1;
         } else {
@@ -88,7 +88,8 @@ const myLightBox = () => {
         var exifData = e.target.parentNode.getAttribute('title'); // Grab Current EXIF data:
 
         displayPicture(image, exifData);
-        count = parseInt(e.target.parentNode.getAttribute('data-picture')) + 1; // Current image location:
+        count = 1;
+        console.log('count', count);
         prevBtn.addEventListener('click', prevPic, false);
         nextBtn.addEventListener('click', nextPic, false);
     };

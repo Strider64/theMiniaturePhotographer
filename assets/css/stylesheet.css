@@ -2160,6 +2160,9 @@ a.qBtn {
       height: 40px;
       text-align: center;
       line-height: 40px; }
+      section.main .displayStatus .displayTitle {
+        font-size: 1.8em;
+        color: #fff; }
       section.main .displayStatus .displayMessage {
         font-size: 1.4em;
         color: #fff;
@@ -2503,7 +2506,16 @@ a.qBtn {
       color: #555;
       background-color: rgba(0, 0, 0, 0.3); }
 
+  div.sidebar h4.displayMessage {
+    padding-left: 40px; }
+
   .disableClick {
     pointer-events: "none"; } }
+@media screen and (min-width: 64em) {
+  #topOfGame {
+    flex-direction: column; } }
+@media screen and (min-width: 90em) {
+  #topOfGame {
+    flex-direction: row; } }
 
 /*# sourceMappingURL=stylesheet.css.map */
