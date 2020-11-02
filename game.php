@@ -61,6 +61,22 @@ $displayMessage = "You are playing as " . $generatedName . "!<br>";
 
 include_once 'assets/includes/header.inc.php';
 ?>
+<div class="popup">
+    <table class="styled-table">
+        <thead>
+            <tr class="tableTitle">
+                <th colspan="2">High Scores</th>
+            </tr>
+            <tr class="subTitle">
+                <th>Name</th>
+                <th>Points</th>
+            </tr>
+        </thead>
+        <tbody class="anchor">
+
+        </tbody>
+    </table>  
+</div>
 <div id="topOfGame" class="content">
     <main class="main-area">
 
@@ -115,22 +131,7 @@ include_once 'assets/includes/header.inc.php';
 
 
         <h4 class="displayMessage" data-username="<?= ($username ?? $generatedName) ?>"><?= ($username ?? $generatedName); ?></h4>
-        <article class="addTriviaInfo">
-            <table class="styled-table">
-                <thead>
-                    <tr class="tableTitle">
-                        <th colspan="2">High Scores</th>
-                    </tr>
-                    <tr class="subTitle">
-                        <th>Name</th>
-                        <th>Points</th>
-                    </tr>
-                </thead>
-                <tbody class="anchor">
 
-                </tbody>
-            </table>
-        </article>
 
         <?php
         if (isset($status) && $status === 'sysop') {
