@@ -43,7 +43,7 @@ class Users {
         $i = 0;
         $salt = "";
         while ($i < $max) {
-            $salt .= $characterList{mt_rand(0, (strlen($characterList) - 1))};
+            $salt .= $characterList(mt_rand(0, (strlen($characterList) - 1)));
             $i++;
         }
         return $salt;
@@ -81,7 +81,7 @@ class Users {
              * re-throw the exception and let the next higher exception 
              * handler, php in this case, catch and handle it
              */
-            
+
             if ($e->errorInfo[1] === 1062) {
                 return false;
             } else {
@@ -142,7 +142,15 @@ class Users {
             unset($password);
             session_regenerate_id();
             $lifetime = 60 * 60 * 24 * 7;
-            setcookie(session_name(), session_id(), time() + $lifetime);
+            $arr_cookie_options = array(
+                'expires' => time() + 60 * 60 * 24 * 30,
+                'path' => '/',
+                'domain' => '.miniaturephotographer.com', // leading dot for compatibility or use subdomain
+                'secure' => true, // or false
+                'httponly' => true, // or false
+                'samesite' => 'None' // None || Lax  || Strict
+            );
+            setcookie(session_name('miniaturephotographer'), session_id(), $arr_cookie_options);
             $_SESSION['id'] = $this->result->id;
 
             // Save these values in the session, even when checks aren't enabled 

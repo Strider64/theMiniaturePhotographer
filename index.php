@@ -6,8 +6,7 @@ use Miniature\Calendar;
 use Miniature\Users as Login;
 use Miniature\CMS;
 use Miniature\Pagination;
-use Miniature\ProcessImage as Process;
-use Miniature\Resize;
+
 use Miniature\Linkify;
 
 ini_set('memory_limit', '256M');
@@ -16,7 +15,7 @@ $login = new Login;
 $journal = new CMS();
 
 $index = 0;
-
+//echo "<pre>" . print_r(session_id(), 1) . "</pre>";
 /*
  * Pagination Code
  */

@@ -84,7 +84,7 @@ class Pagination extends Journal {
 
         $this->query = 'SELECT id, user_id, author, page, thumb_path, path, post, page, Model, ExposureTime, Aperture, ISO, FocalLength, heading, content, DATE_FORMAT(date_added, "%M %e, %Y") as date_added, date_added as myDate FROM cms ORDER BY myDate DESC LIMIT :perPage OFFSET :blogOffset';
         $this->stmt = static::pdo()->prepare($this->query); // Prepare the query:
-        $this->stmt->execute([':perPage' => $this->perPage, ':blogOffset' => $this->offset()]); // Execute the query with the supplied data:
+        $this->stmt->execute(['perPage' => $this->perPage, 'blogOffset' => $this->offset()]); // Execute the query with the supplied data:
         $this->result = $this->stmt->fetchAll(PDO::FETCH_OBJ);
         return $this->result;
     }

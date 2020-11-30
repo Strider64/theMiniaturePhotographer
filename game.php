@@ -83,7 +83,7 @@ include_once 'assets/includes/header.inc.php';
         <section  class="main">
 
             <div class="displayStatus">
-                <h4 class="displayTitle">Welcome to Photography Trivia</h4>
+                <h4 class="displayTitle">Photography Trivia Game</h4>
                 <p>I have developed a photography trivia question game that lets people learn photography while having fun. I am sprucing up the game in order to bring even more fun to the game. The winner of after each day will be able to add a photography trivia question to the database table. The question and answers probably will not be posted right away in order for the question to be approved and/or edited. The only prize is getting top honors on a daily top high score listing on this website, plus the knowledge of being top for that day in knowing photography.</p>
                 <p>I have updated the way the username is displayed in the high score table, if you don't register/login then you will be randomly selected a username </p>
 
