@@ -15,7 +15,7 @@ $login = new Login;
 $journal = new CMS();
 
 $index = 0;
-//echo "<pre>" . print_r(session_id(), 1) . "</pre>";
+
 /*
  * Pagination Code
  */
